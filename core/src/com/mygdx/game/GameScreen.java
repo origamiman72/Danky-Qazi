@@ -29,6 +29,8 @@ public class GameScreen implements Screen {
     startScreen start;
     pause Pause;
 
+    musicbg bgm;
+
     book[] books = new book[4];
     book booko;
 
@@ -64,6 +66,7 @@ public class GameScreen implements Screen {
         this.game = game;
         img1 = new Texture("background2.jpg");
 
+        bgm = new musicbg();
         start= new startScreen();
         bg1 = new bg();
         bg2 = new bg();
@@ -112,6 +115,7 @@ public class GameScreen implements Screen {
         ypos = 310;
         /**Extraneous*/
         pause = new Texture("pause.png");
+        bgm.play();
     }
 
     //METHODS
@@ -130,6 +134,7 @@ public class GameScreen implements Screen {
 
         game.batch.enableBlending();
 
+
         game.batch.begin();
         game.batch.draw(bg1.texture, bg1.x, bg1.y, bg1.width, bg1.height);
         game.batch.draw(img1, bg2.x, bg2.y, bg2.width, bg2.height);
@@ -147,15 +152,16 @@ public class GameScreen implements Screen {
         game.batch.draw(pipetop1.texture, (pipetop1.x), pipetop1.y, pipetop1.width, pipetop1.height);
         game.batch.draw(pipetop2.texture, (pipetop2.x), pipetop2.y, pipetop2.width, pipetop2.height);
         */
-        if (Pause.gamePause != false){
+        if (Pause.gamePause){
             game.batch.draw(pause, 0, 0);
         }
         game.batch.draw(start.texture, start.x, start.y);
-        if (gameEnd != false) {
+        if (gameEnd) {
             game.batch.draw(img, xpos, ypos);
         }
         //game.batch.draw(img, xpos, ypos, 101, 126);
         game.batch.end();
+
     }
 
     @Override
@@ -194,9 +200,9 @@ public class GameScreen implements Screen {
             }
 
         }
-
         start.update();
-        if(start.startGame!=true) {
+        if(!start.startGame) {
+
             if(pipebts[0].x<pipebts[1].x){
                 if (danky.y<(pipebts[0].y+pipebts[0].height+2)){
                     danky.yvel=16;
@@ -207,11 +213,11 @@ public class GameScreen implements Screen {
                 }
             }
         }
-        if (gameEnd != true) {
-            if (start.startGame==true) {
+        if (!gameEnd) {
+            if (start.startGame) {
                 Pause.update();
             }
-            if (Pause.gamePause ==false) {
+            if (!Pause.gamePause) {
                 danky.update();
                 for (int i = 0; i <= 1; i++) {
                     pipebts[i].update();
@@ -247,7 +253,7 @@ public class GameScreen implements Screen {
             gameEnd = true;
             danky.y = 0;
         }
-        if (gameEnd== true) {
+        if (gameEnd) {
             if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
                 gameEnd = false;
                 start.startGame=false;
