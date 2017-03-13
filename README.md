@@ -31,3 +31,4 @@ Dankest game in all the land
 4. Change working directory to assets folder.
 5. Edit code.
 6. To commit changes, go to VCS> Commit or press Ctrl+k
+7. Edit changelog and write who made edits (eg. (-@origamiman72))
