@@ -6,7 +6,7 @@ Dankest game in all the land
 
 ##Changelog
 
-###v0..2
+###v0.2
 
 * background music added (Rick Astley - Never gonna give you up (intstrumental))
 * Code cleaned up
@@ -29,3 +29,5 @@ Dankest game in all the land
 2. In IntelliJ, press open, then navigate to build.gradle and open it.
 3. In the DesktopLauncher class, navigate to the top right corner where it says 'DesktopLauncher' and press 'Edit Configurations'
 4. Change working directory to assets folder.
+5. Edit code.
+6. To commit changes, go to VCS> Commit or press Ctrl+k
