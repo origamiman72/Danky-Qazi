@@ -9,6 +9,8 @@ v0..2
 
 -background music added (Rick Astley - Never gonna give you up (intstrumental))
 
+(-@origamiman72)
+
 v0.1
 
 -initial release
@@ -18,4 +20,6 @@ v0.1
 -start screen added
 
 -pause screen added
+
+(@-origamiman72)
 
