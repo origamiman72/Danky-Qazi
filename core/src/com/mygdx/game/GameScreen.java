@@ -26,42 +26,24 @@ public class GameScreen implements Screen {
     private final int LEVEL_WIDTH;
     private final int LEVEL_HEIGHT;
 
+
     Qazi danky;
     boolean gameEnd = false;
     startScreen start;
     pause Pause;
-
     musicbg bgm;
-
     book[] books = new book[4];
     book booko;
-
     pipebt[] pipebts = new pipebt[2];
     pipetop[] pipetops = new pipetop[2];
-
     bg bg1;
     bg bg2;
 
-
-    /*pipebt pipebt1 = new pipebt();
-    pipebt pipebt2 = new pipebt();
-    pipetop pipetop1= new pipetop();
-    pipetop pipetop2= new pipetop();
-    */
-
-
-    /**
-     * Extraneous
-     */
     private Texture img;
     private Texture img1;
     private Texture pause;
     int xpos;
     int ypos;
-
-    /**
-     * Extraneous
-     */
 
     //CONSTRUCTOR
     public GameScreen(MyGdxGame game) {
@@ -100,22 +82,15 @@ public class GameScreen implements Screen {
             pipetops[i].x = pipebts[i].x;
         }
 
-        /*pipebt2.x= pipebt1.x+700;
-        pipetop1.y=pipebt1.y+700;
-        pipetop2.x=pipebt2.x;
-        pipetop2.y=pipebt2.y+700;
-        */
-
         LEVEL_WIDTH = MyGdxGame.V_WIDTH;
         LEVEL_HEIGHT = MyGdxGame.V_HEIGHT;
         gameCam = new OrthographicCamera();
         gamePort = new ExtendViewport(LEVEL_WIDTH, LEVEL_HEIGHT, gameCam);
 
-        /**Extraneous*/
         img = new Texture("gameover.png");
         xpos = 390;
         ypos = 310;
-        /**Extraneous*/
+
         pause = new Texture("pause.png");
         bgm.play();
     }
@@ -149,11 +124,6 @@ public class GameScreen implements Screen {
             game.batch.draw(pipetops[i].texture, pipetops[i].x, pipetops[i].y, pipetops[i].width, pipetops[i].height);
         }
 
-        /*game.batch.draw(pipebt1.texture, pipebt1.x, pipebt1.y, pipebt1.width, pipebt1.height);
-        game.batch.draw(pipebt2.texture, (pipebt2.x), pipebt2.y, pipebt2.width, pipebt2.height);
-        game.batch.draw(pipetop1.texture, (pipetop1.x), pipetop1.y, pipetop1.width, pipetop1.height);
-        game.batch.draw(pipetop2.texture, (pipetop2.x), pipetop2.y, pipetop2.width, pipetop2.height);
-        */
         if (Pause.gamePause){
             game.batch.draw(pause, 0, 0);
         }
@@ -163,29 +133,24 @@ public class GameScreen implements Screen {
         }
         //game.batch.draw(img, xpos, ypos, 101, 126);
         game.batch.end();
-
     }
 
     @Override
     public void resize(int width, int height) {
 
     }
-
     @Override
     public void pause() {
 
     }
-
     @Override
     public void resume() {
 
     }
-
     @Override
     public void hide() {
 
     }
-
     @Override
     public void dispose() {
 
@@ -200,8 +165,8 @@ public class GameScreen implements Screen {
             if (danky.isCollide(e)){
                 gameEnd=true;
             }
-
         }
+
         start.update();
         if(!start.startGame) {
 
@@ -209,7 +174,7 @@ public class GameScreen implements Screen {
                 if (danky.y<(pipebts[0].y+pipebts[0].height+2)){
                     danky.yvel=16;
                 }
-            }else if(pipebts[1].x<pipebts[0].x){
+            } else if(pipebts[1].x<pipebts[0].x){
                 if (danky.y<(pipebts[1].y+pipebts[1].height+10)){
                     danky.yvel=16;
                 }
@@ -234,27 +199,19 @@ public class GameScreen implements Screen {
                     if(j<1){
                         j++;
                     }
-
                 }
                 */
                 }
                 bg1.update();
                 bg2.update();
             }
-
-
-            /*pipebt1.update();
-            pipebt2.update();
-            pipetop1.update();
-            pipetop1.y=pipebt1.y+700;
-            pipetop2.update();
-            pipetop2.y=pipebt2.y+700;
-            */
         }
+
         if (danky.y <= 0) {
             gameEnd = true;
             danky.y = 0;
         }
+
         if (gameEnd) {
             if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
                 gameEnd = false;
@@ -264,23 +221,18 @@ public class GameScreen implements Screen {
 //                danky.yvel = 0;
             }
         }
-
-        /*if(Gdx.input.isKeyPressed(Input.Keys.W)){
-            ypos+=5;
-        }
-        if(Gdx.input.isKeyPressed(Input.Keys.S)){
-            ypos-=5;
-        }
-        if(Gdx.input.isKeyPressed(Input.Keys.A)){
-            xpos-=5;
-        }
-        if(Gdx.input.isKeyPressed(Input.Keys.D)){
-            xpos+=5;
-        }
-        System.out.println(delta);
-
-       */
-
+//        if(Gdx.input.isKeyPressed(Input.Keys.W)){
+//            ypos+=5;
+//        }
+//        if(Gdx.input.isKeyPressed(Input.Keys.S)){
+//            ypos-=5;
+//        }
+//        if(Gdx.input.isKeyPressed(Input.Keys.A)){
+//            xpos-=5;
+//        }
+//        if(Gdx.input.isKeyPressed(Input.Keys.D)){
+//            xpos+=5;
+//        }
+//        System.out.println(delta);
     }
-
 }
