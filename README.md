@@ -5,8 +5,8 @@
 Dankest game in all the land
 
 ##Changelog
-```
-v0.2
+
+###v0.2
 
 * background music added (Rick Astley - Never gonna give you up (intstrumental))
 * Code cleaned up
@@ -14,7 +14,7 @@ v0.2
 (-@origamiman72)
 
 
-v0.1
+###v0.1
 
 * initial release
 * background added
@@ -22,7 +22,7 @@ v0.1
 * pause screen added
 
 (@-origamiman72)
-```
+
 ##Things to add
 
 * Doritos (powerups)
