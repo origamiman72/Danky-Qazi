@@ -26,16 +26,15 @@ public class GameScreen implements Screen {
     private final int LEVEL_WIDTH;
     private final int LEVEL_HEIGHT;
 
-
     Qazi danky;
     boolean gameEnd = false;
     startScreen start;
     pause Pause;
     musicbg bgm;
-    book[] books = new book[4];
+    book[] books = new book[Constant.booknumber];
     book booko;
-    pipebt[] pipebts = new pipebt[2];
-    pipetop[] pipetops = new pipetop[2];
+    pipebt[] pipebts = new pipebt[Constant.pipenumber];
+    pipetop[] pipetops = new pipetop[Constant.pipenumber];
     bg bg1;
     bg bg2;
 
@@ -59,23 +58,23 @@ public class GameScreen implements Screen {
         booko= new book(game.batch);
         Pause = new pause();
 
-        for (int i = 0; i <= 1; i++) {
+        for (int i = 0; i <= (Constant.pipenumber - 1); i++) {
             pipebts[i] = new pipebt(game.batch);
         }
 
-        for (int j = 0; j <= 3; j++) {
+        for (int j = 0; j <= (Constant.booknumber - 1); j++) {
             books[j] = new book(game.batch);
         }
 
-        for (int i = 0; i <= 3; i++) {
+        for (int i = 0; i <= (Constant.booknumber - 1); i++) {
             books[i].x = (700 * i) + 1280;
         }
 
-        for (int i = 0; i <= 1; i++) {
+        for (int i = 0; i <= (Constant.pipenumber - 1); i++) {
             pipetops[i] = new pipetop(game.batch);
         }
 
-        for (int i = 0; i <= 1; i++) {
+        for (int i = 0; i <= (Constant.pipenumber - 1); i++) {
             //pipebts[i].x = pipebts[i].x + 700;
             pipebts[i].x = ((700 * (i)) + 1280);
             pipetops[i].y = pipebts[i].y + 700;
@@ -116,10 +115,10 @@ public class GameScreen implements Screen {
         game.batch.draw(bg1.texture, bg1.x, bg1.y, bg1.width, bg1.height);
         game.batch.draw(img1, bg2.x, bg2.y, bg2.width, bg2.height);
         game.batch.draw(danky.texture, danky.x, danky.y, danky.width, danky.height);
-        for (int i = 0; i <= 1; i++) {
+        for (int i = 0; i <= (Constant.booknumber - 1); i++) {
             game.batch.draw(books[i].texture, books[i].x, books[i].y, books[i].width, books[i].height);
         }
-        for (int i = 0; i <= 1; i++) {
+        for (int i = 0; i <= (Constant.pipenumber - 1); i++) {
             game.batch.draw(pipebts[i].texture, pipebts[i].x, pipebts[i].y, pipebts[i].width, pipebts[i].height);
             game.batch.draw(pipetops[i].texture, pipetops[i].x, pipetops[i].y, pipetops[i].width, pipetops[i].height);
         }
@@ -170,6 +169,17 @@ public class GameScreen implements Screen {
         start.update();
         if(!start.startGame) {
 
+
+
+            //Requires make back to original code
+//            for (int i = 0; i <= (Constant.booknumber - 1); i++) {
+//                if (pipebts[i].x < pipebts[i].x) {
+//                    if (danky.y < (pipebts[0].y + pipebts[0].height + 2)) {
+//                        danky.yvel = 16;
+//                    }
+//                }
+//            }
+
             if(pipebts[0].x<pipebts[1].x){
                 if (danky.y<(pipebts[0].y+pipebts[0].height+2)){
                     danky.yvel=16;
@@ -180,20 +190,26 @@ public class GameScreen implements Screen {
                 }
             }
         }
+
         if (!gameEnd) {
             if (start.startGame) {
                 Pause.update();
             }
             if (!Pause.gamePause) {
                 danky.update();
-                for (int i = 0; i <= 1; i++) {
+                for (int i = 0; i <= (Constant.pipenumber - 1); i++) {
                     pipebts[i].update();
                     pipetops[i].update();
                     pipetops[i].y = pipebts[i].y + 700;
                 }
-                for (int i = 0; i <= 1; i++) {
+
+                //Number of books is always half of total here.
+                for (int i = 0; i <= ((Constant.booknumber - 1)); i++) {
                     books[i].update();
                     int j = 0;
+                }
+
+                //Moves books from spaces in between pipes.
                 /*while (books[i].y > (pipebts[j].y+427) && books[i].y+100 < pipetops[j].y && j<=1) {
                     books[i].update();
                     if(j<1){
@@ -201,7 +217,7 @@ public class GameScreen implements Screen {
                     }
                 }
                 */
-                }
+
                 bg1.update();
                 bg2.update();
             }
