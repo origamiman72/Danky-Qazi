@@ -32,6 +32,12 @@ Dankest game in all the land
 * Better textures
 * Hitboxes
 
+##Download Game
+
+Latest Version:
+
+**Coming Soon**
+
 ##How to contribute to code
 
 1. Download code.
