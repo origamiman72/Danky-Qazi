@@ -23,6 +23,15 @@ Dankest game in all the land
 
 (@-origamiman72)
 
+###Things to add
+
+* Doritos (powerups)
+* Change background music
+* Explanations for what everything does in code
+* Settings to mute audio
+* Better textures
+* Hitboxes
+
 ##How to contribute to code
 
 1. Download code.
