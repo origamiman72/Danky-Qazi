@@ -15,7 +15,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
  * Created by peter on 2/18/17.
  */
 
-//test
+//test123
 
 public class GameScreen implements Screen {
 
@@ -47,7 +47,10 @@ public class GameScreen implements Screen {
 
     //CONSTRUCTOR
     public GameScreen(MyGdxGame game) {
+
         this.game = game;
+
+        //Background
         img1 = new Texture("background2.jpg");
 
         bgm = new musicbg();
@@ -59,22 +62,23 @@ public class GameScreen implements Screen {
         booko= new book(game.batch);
         Pause = new pause();
 
+        //Bottom Pipes
         for (int i = 0; i <= 1; i++) {
             pipebts[i] = new pipebt(game.batch);
         }
 
+        //Books
         for (int j = 0; j <= 3; j++) {
             books[j] = new book(game.batch);
         }
-
         for (int i = 0; i <= 3; i++) {
             books[i].x = (700 * i) + 1280;
         }
 
+        //Top Pipes
         for (int i = 0; i <= 1; i++) {
             pipetops[i] = new pipetop(game.batch);
         }
-
         for (int i = 0; i <= 1; i++) {
             //pipebts[i].x = pipebts[i].x + 700;
             pipebts[i].x = ((700 * (i)) + 1280);
