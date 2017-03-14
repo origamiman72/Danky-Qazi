@@ -23,7 +23,7 @@ Dankest game in all the land
 
 (@-origamiman72)
 
-###Things to add
+##Things to add
 
 * Doritos (powerups)
 * Change background music
