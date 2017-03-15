@@ -19,6 +19,7 @@ public class Qazi extends entity{
 
     Sound triboonal = Gdx.audio.newSound(Gdx.files.internal("triboonal.mp3"));
     Sound gameover = Gdx.audio.newSound(Gdx.files.internal("gameover.mp3"));
+    boolean gameStart = false;
 
 //    int x;
 //
@@ -37,10 +38,13 @@ public class Qazi extends entity{
         */
     }
     public void update(){
+
         if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
-            if(y<=700) {
-                yvel = 16;
-                triboonal.play(1.0f);
+            if (gameStart){
+                if(y<=700) {
+                    yvel = 16;
+                    triboonal.play(1.0f);
+                }
             }
         } else {
             yvel--;
