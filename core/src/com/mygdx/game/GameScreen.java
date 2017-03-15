@@ -160,6 +160,11 @@ public class GameScreen implements Screen {
     }
 
     public void update(float delta) {
+        if (start.startGame){
+            danky.gameStart=true;
+        }else if(!start.startGame){
+            danky.gameStart=false;
+        }
 
         //if (entity.isCollide==true){
         //   gameEnd=true;
