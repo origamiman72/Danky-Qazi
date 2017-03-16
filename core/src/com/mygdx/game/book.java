@@ -1,5 +1,4 @@
 package com.mygdx.game;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
@@ -11,18 +10,13 @@ import java.util.Random;
  * Created by ahuja on 2/18/2017.
  */
 public class book extends entity{
-//    Texture texture;
 
+//    Texture texture;
 //    long height;
 //    long width;
-//
-//
 //    int x;
-//
 //    long y;
-//
 //    int v;
-
 
     public book(/*int width, int height, int x, int y, int v, int typeID, Texture texture, */SpriteBatch batch) {
         super((int)Math.round(1000/10), (int)Math.round(829/10), 1280, (int)Math.round(Math.random() * 400 + 100), 10, 0, 0, new Texture("chembook.png"), batch);
@@ -45,6 +39,5 @@ public class book extends entity{
 
     @Override
     public void render() {
-
     }
 }

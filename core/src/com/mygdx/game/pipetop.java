@@ -1,5 +1,4 @@
 package com.mygdx.game;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
@@ -11,18 +10,13 @@ import java.util.Random;
  * Created by ahuja on 2/18/2017.
  */
 public class pipetop extends entity {
-//    Texture texture;
 
+//    Texture texture;
 //    long height;
 //    long width;
-//
-//
 //    int x;
-//
 //    long y;
-//
 //    int v;
-
 
     public pipetop(/*int width, int height, int x, int y, int v, int typeID, Texture texture, */SpriteBatch batch) {
         super((int)Math.round(143/1.2), (int)Math.round(512/1.2), 1280, 0, 5, 0, 0, new Texture("dankpipetop.png"), batch);
@@ -44,6 +38,5 @@ public class pipetop extends entity {
 
     @Override
     public void render() {
-
     }
 }

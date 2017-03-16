@@ -13,8 +13,6 @@ public class DesktopLauncher {
 
 		//Configurations for Desktop Version
 
-
-
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
 		cfg.resizable=true;
 		cfg.height = 720;

@@ -1,5 +1,4 @@
 package com.mygdx.game;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Sound;
@@ -13,7 +12,6 @@ import com.sun.xml.internal.stream.Entity;
 public class Qazi extends entity{
 
 //    Texture texture;
-//
 //    long height;
 //    long width;
 
@@ -21,9 +19,7 @@ public class Qazi extends entity{
     Sound gameover = Gdx.audio.newSound(Gdx.files.internal("gameover.mp3"));
 
 //    int x;
-//
 //    int y;
-//
 //    int v;
 
     public Qazi(/*int width, int height, int x, int y, int v, int typeID, Texture texture, */SpriteBatch batch){
@@ -49,12 +45,9 @@ public class Qazi extends entity{
         if(y<=0){
             gameover.play(1.0f);
         }
-
-
     }
 
     @Override
     public void render() {
-
     }
 }

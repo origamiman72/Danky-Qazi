@@ -1,5 +1,4 @@
 package com.mygdx.game;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
@@ -14,8 +13,6 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 /**
  * Created by peter on 2/18/17.
  */
-
-//test
 
 public class GameScreen implements Screen {
 
@@ -62,8 +59,8 @@ public class GameScreen implements Screen {
             pipebts[i] = new pipebt(game.batch);
         }
 
-        for (int j = 0; j <= (Constant.booknumber - 1); j++) {
-            books[j] = new book(game.batch);
+        for (int j = 0; j <= (Constant.booknumber - 1); i++) {
+            books[i] = new book(game.batch);
         }
 
         for (int i = 0; i <= (Constant.booknumber - 1); i++) {
@@ -97,7 +94,6 @@ public class GameScreen implements Screen {
     //METHODS
     @Override
     public void show() {
-
     }
 
     @Override
@@ -108,6 +104,7 @@ public class GameScreen implements Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        //Belnds backgrounds, allows transparent images
         game.batch.enableBlending();
 
 
@@ -136,23 +133,18 @@ public class GameScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
-
     }
     @Override
     public void pause() {
-
     }
     @Override
     public void resume() {
-
     }
     @Override
     public void hide() {
-
     }
     @Override
     public void dispose() {
-
     }
 
     public void update(float delta) {
@@ -168,8 +160,6 @@ public class GameScreen implements Screen {
 
         start.update();
         if(!start.startGame) {
-
-
 
             //Requires make back to original code
 //            for (int i = 0; i <= (Constant.booknumber - 1); i++) {

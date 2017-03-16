@@ -1,6 +1,4 @@
 package com.mygdx.game;
-
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
@@ -22,6 +20,7 @@ public class startScreen {
         texture= new Texture("start screen.png");
         yvel=0;
     }
+
     public void update(){
         if (startGame!=true) {
             if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {

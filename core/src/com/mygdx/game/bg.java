@@ -1,5 +1,4 @@
 package com.mygdx.game;
-
 import com.badlogic.gdx.graphics.Texture;
 
 /**
@@ -21,7 +20,7 @@ public class bg {
         height = 720;
         x = 0;
         y = 0;
-        xvel=1;
+        xvel = 1;
     }
 
     public void update() {
@@ -32,6 +31,7 @@ public class bg {
 //        if (posx<=CPipe.Lbound) {
 //            posx = CPipe.Rbound;
 //        }
+
         x -= Math.round(xvel/1.5);
         if(x<=-1280){
             x=1280;

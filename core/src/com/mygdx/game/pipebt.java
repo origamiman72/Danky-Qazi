@@ -12,18 +12,13 @@ import java.util.Random;
  * Created by ahuja on 2/18/2017.
  */
 public class pipebt extends entity {
-//    Texture texture;
 
+//    Texture texture;
 //    long height;
 //    long width;
-//
-//
 //    int x;
-//
 //    long y;
-//
 //    int v;
-
 
     public pipebt(/*int width, int height, int x, int y, int v, int typeID, Texture texture, */SpriteBatch batch) {
         super((int)Math.round(143/1.2), (int)Math.round(512/1.2), 1280, (int)(0-Math.round(Math.random() * 290 + 100)), 5, 0, 0, new Texture("dankpipe.png"), batch);
@@ -46,6 +41,5 @@ public class pipebt extends entity {
 
     @Override
     public void render() {
-
     }
 }

@@ -1,5 +1,4 @@
 package com.mygdx.game;
-
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -12,17 +11,13 @@ public abstract class entity {
 
     //FIELDS
     public Texture texture;    //Texture
-
     public SpriteBatch batch;  //Draw Textures
-
     public int width;
     public int height;
-
     public int x;
     public int y;
     public int xvel;
     public int yvel;
-
     public final int typeID;
 
     //STATIC FIELDS
@@ -57,5 +52,4 @@ public abstract class entity {
     //ABSTRACT METHODS
     //Varies depending on the subclass*
     public abstract void render();
-
 }

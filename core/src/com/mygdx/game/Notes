@@ -1,5 +1,7 @@
 To-do:
-Put everything in order of want to be drawn
+Put everything in fixed order of want to be drawn
+Remove code which is irrelevant, or collapse to make look better
+Generalize numbers used (too many instances)
 Generalize spacing between pipes with variable pipe number
 
 Features:
