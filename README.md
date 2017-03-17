@@ -36,7 +36,7 @@ Dankest game in all the land
 
 Latest Version:
 
-**Coming Soon**
+v0.2: [Download](https://www.dropbox.com/s/ghh3w24g6v1jo1v/Danky%20Qazi%20v0.2.jar?dl=0)
 
 ##How to contribute to code
 
