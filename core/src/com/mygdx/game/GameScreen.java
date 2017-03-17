@@ -26,6 +26,8 @@ public class GameScreen implements Screen {
     private final int LEVEL_WIDTH;
     private final int LEVEL_HEIGHT;
 
+    private int pipeSpace;
+
     Qazi danky;
     boolean gameEnd = false;
     startScreen start;
@@ -44,6 +46,7 @@ public class GameScreen implements Screen {
     int xpos;
     int ypos;
 
+
     //CONSTRUCTOR
     public GameScreen(MyGdxGame game) {
 
@@ -61,6 +64,7 @@ public class GameScreen implements Screen {
         booko= new book(game.batch);
         Pause = new pause();
 
+
         for (int i = 0; i <= (Constant.pipenumber - 1); i++) {
             pipebts[i] = new pipebt(game.batch);
         }
@@ -77,13 +81,16 @@ public class GameScreen implements Screen {
             pipetops[i] = new pipetop(game.batch);
         }
 
+        pipeSpace=((1280+(pipebts[1].width*(Constant.pipenumber+1)))-(pipebts[1].width*Constant.pipenumber))/Constant.pipenumber;
+
         for (int i = 0; i <= (Constant.pipenumber - 1); i++) {
 
             //pipebts[i].x = pipebts[i].x + 700;
-            pipebts[i].x = ((700 * (i)) + 1280);
+            pipebts[i].x = ((pipeSpace * (i)) + 1280);
             pipetops[i].y = pipebts[i].y + 700;
             pipetops[i].x = pipebts[i].x;
         }
+
 
         LEVEL_WIDTH = MyGdxGame.V_WIDTH;
         LEVEL_HEIGHT = MyGdxGame.V_HEIGHT;

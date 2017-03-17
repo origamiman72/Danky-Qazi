@@ -5,6 +5,7 @@ package com.mygdx.game;
  */
 public class Constant {
 
-    static int pipenumber = 2;
+
+    static int pipenumber = 3;
     static int booknumber = 2;
 }
