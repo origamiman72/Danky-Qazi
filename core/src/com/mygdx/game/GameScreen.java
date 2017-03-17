@@ -39,6 +39,7 @@ public class GameScreen implements Screen {
     pipetop[] pipetops = new pipetop[Constant.pipenumber];
     bg bg1;
     bg bg2;
+    private int minValue;
 
     private Texture img;
     private Texture img1;
@@ -51,7 +52,6 @@ public class GameScreen implements Screen {
     public GameScreen(MyGdxGame game) {
 
         this.game = game;
-
         //Background
         img1 = new Texture("background2.jpg");
 
@@ -182,10 +182,15 @@ public class GameScreen implements Screen {
             }
         }
 
+        minValue=pipebts[0].x;
+        for (int i = 1; i < pipebts.length; i++) {
+            if (pipebts[i].x < minValue) {
+                minValue = pipebts[i].x;
+            }
+        }
+
         start.update();
         if(!start.startGame) {
-
-
 
             //Requires make back to original code
 //            for (int i = 0; i <= (Constant.booknumber - 1); i++) {
@@ -196,13 +201,11 @@ public class GameScreen implements Screen {
 //                }
 //            }
 
-            if(pipebts[0].x<pipebts[1].x){
-                if (danky.y<(pipebts[0].y+pipebts[0].height+2)){
-                    danky.yvel=16;
-                }
-            } else if(pipebts[1].x<pipebts[0].x){
-                if (danky.y<(pipebts[1].y+pipebts[1].height+10)){
-                    danky.yvel=16;
+            for (int i = 0; i < pipebts.length; i++) {
+                if(pipebts[i].x==minValue){
+                    if (danky.y<(pipebts[i].y+pipebts[i].height+2)){
+                        danky.yvel=16;
+                    }
                 }
             }
         }
