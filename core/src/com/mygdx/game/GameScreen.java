@@ -28,6 +28,8 @@ public class GameScreen implements Screen {
 
     private int pipeSpace;
 
+    private int score;
+
     Qazi danky;
     boolean gameEnd = false;
     startScreen start;
@@ -54,7 +56,7 @@ public class GameScreen implements Screen {
         this.game = game;
         //Background
         img1 = new Texture("background2.jpg");
-
+        score = 0;
         bgm = new musicbg();
         start= new startScreen();
         bg1 = new bg();
@@ -212,6 +214,9 @@ public class GameScreen implements Screen {
 
         if (!gameEnd) {
             if (start.startGame) {
+                //Score counter
+
+
                 Pause.update();
             }
             if (!Pause.gamePause) {
@@ -221,7 +226,15 @@ public class GameScreen implements Screen {
                     pipetops[i].update();
                     pipetops[i].y = pipebts[i].y + 700;
                 }
-
+                if(start.startGame) {
+                    for (int i = 0; i < pipebts.length; i++) {
+                        if ((danky.x) == (pipebts[i].x)) {
+                            score++;
+                            System.out.println(score);
+                        }
+                    }
+                }
+                System.out.println(score);
                 //Number of books is always half of total here.
                 for (int i = 0; i <= ((Constant.booknumber - 1)); i++) {
                     books[i].update();
@@ -248,6 +261,7 @@ public class GameScreen implements Screen {
         }
 
         if (gameEnd) {
+            score=0;
             if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
                 gameEnd = false;
                 start.startGame=false;
