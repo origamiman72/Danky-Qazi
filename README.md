@@ -1,12 +1,12 @@
-#Danky Qazi
+# Danky Qazi
 
 10/10-ign
 
 Dankest game in all the land
 
-##Changelog
+## Changelog
 
-###v0.2
+### v0.2
 
 * background music added (Rick Astley - Never gonna give you up (intstrumental))
 * Code cleaned up
@@ -14,7 +14,7 @@ Dankest game in all the land
 (-@origamiman72)
 
 
-###v0.1
+### v0.1
 
 * initial release
 * background added
@@ -23,7 +23,7 @@ Dankest game in all the land
 
 (@-origamiman72)
 
-##Things to add
+## Things to add
 
 * Doritos (powerups)
 * Change background music
@@ -32,13 +32,13 @@ Dankest game in all the land
 * Better textures
 * Hitboxes
 
-##Download Game
+## Download Game
 
 Latest Version:
 
 v0.2: [Download](https://www.dropbox.com/s/ghh3w24g6v1jo1v/Danky%20Qazi%20v0.2.jar?dl=0)
 
-##How to contribute to code
+## How to contribute to code
 
 1. Download code.
 2. In IntelliJ, press open, then navigate to build.gradle and open it.
