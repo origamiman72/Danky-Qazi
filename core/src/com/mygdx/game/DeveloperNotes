@@ -1,0 +1,7 @@
+Changes (3/14/17) (origamiman72)
+-Fixed Qazi jumping in start screen
+
+Changes (3/13/17) (BRF321JOJO)
+- Made constant class
+- Includes generalization of number of pipes and books
+- Fixed books initialization and draw/update number difference

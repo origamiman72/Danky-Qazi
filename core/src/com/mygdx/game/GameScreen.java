@@ -26,18 +26,22 @@ public class GameScreen implements Screen {
     private final int LEVEL_WIDTH;
     private final int LEVEL_HEIGHT;
 
+    private int pipeSpace;
+
+    private int score;
 
     Qazi danky;
     boolean gameEnd = false;
     startScreen start;
     pause Pause;
     musicbg bgm;
-    book[] books = new book[4];
+    book[] books = new book[Constant.booknumber];
     book booko;
-    pipebt[] pipebts = new pipebt[2];
-    pipetop[] pipetops = new pipetop[2];
+    pipebt[] pipebts = new pipebt[Constant.pipenumber];
+    pipetop[] pipetops = new pipetop[Constant.pipenumber];
     bg bg1;
     bg bg2;
+    private int minValue;
 
     private Texture img;
     private Texture img1;
@@ -45,14 +49,14 @@ public class GameScreen implements Screen {
     int xpos;
     int ypos;
 
+
     //CONSTRUCTOR
     public GameScreen(MyGdxGame game) {
 
         this.game = game;
-
         //Background
         img1 = new Texture("background2.jpg");
-
+        score = 0;
         bgm = new musicbg();
         start= new startScreen();
         bg1 = new bg();
@@ -62,29 +66,36 @@ public class GameScreen implements Screen {
         booko= new book(game.batch);
         Pause = new pause();
 
-        //Bottom Pipes
-        for (int i = 0; i <= 1; i++) {
+
+        for (int i = 0; i <= (Constant.pipenumber - 1); i++) {
             pipebts[i] = new pipebt(game.batch);
+            entity.entities.add(pipebts[i]);
         }
 
-        //Books
-        for (int j = 0; j <= 3; j++) {
+        for (int j = 0; j <= (Constant.booknumber - 1); j++) {
             books[j] = new book(game.batch);
+            entity.entities.add(books[j]);
         }
-        for (int i = 0; i <= 3; i++) {
+
+        for (int i = 0; i <= (Constant.booknumber - 1); i++) {
             books[i].x = (700 * i) + 1280;
         }
 
-        //Top Pipes
-        for (int i = 0; i <= 1; i++) {
+        for (int i = 0; i <= (Constant.pipenumber - 1); i++) {
             pipetops[i] = new pipetop(game.batch);
+            entity.entities.add(pipetops[i]);
         }
-        for (int i = 0; i <= 1; i++) {
+
+        pipeSpace=((1280+(pipebts[1].width*(Constant.pipenumber+1)))-(pipebts[1].width*Constant.pipenumber))/Constant.pipenumber;
+
+        for (int i = 0; i <= (Constant.pipenumber - 1); i++) {
+
             //pipebts[i].x = pipebts[i].x + 700;
-            pipebts[i].x = ((700 * (i)) + 1280);
+            pipebts[i].x = ((pipeSpace * (i)) + 1280);
             pipetops[i].y = pipebts[i].y + 700;
             pipetops[i].x = pipebts[i].x;
         }
+
 
         LEVEL_WIDTH = MyGdxGame.V_WIDTH;
         LEVEL_HEIGHT = MyGdxGame.V_HEIGHT;
@@ -120,10 +131,10 @@ public class GameScreen implements Screen {
         game.batch.draw(bg1.texture, bg1.x, bg1.y, bg1.width, bg1.height);
         game.batch.draw(img1, bg2.x, bg2.y, bg2.width, bg2.height);
         game.batch.draw(danky.texture, danky.x, danky.y, danky.width, danky.height);
-        for (int i = 0; i <= 1; i++) {
+        for (int i = 0; i <= (Constant.booknumber - 1); i++) {
             game.batch.draw(books[i].texture, books[i].x, books[i].y, books[i].width, books[i].height);
         }
-        for (int i = 0; i <= 1; i++) {
+        for (int i = 0; i <= (Constant.pipenumber - 1); i++) {
             game.batch.draw(pipebts[i].texture, pipebts[i].x, pipebts[i].y, pipebts[i].width, pipebts[i].height);
             game.batch.draw(pipetops[i].texture, pipetops[i].x, pipetops[i].y, pipetops[i].width, pipetops[i].height);
         }
@@ -161,43 +172,93 @@ public class GameScreen implements Screen {
     }
 
     public void update(float delta) {
+        if (start.startGame){
+            danky.gameStart=true;
+        }else if(!start.startGame){
+            danky.gameStart=false;
+        }
 
         //if (entity.isCollide==true){
         //   gameEnd=true;
 
-        for (entity e : entity.entities) {
-            if (danky.isCollide(e)){
-                gameEnd=true;
+
+
+        minValue=pipebts[0].x;
+        for (int i = 1; i < pipebts.length; i++) {
+            if (pipebts[i].x < minValue) {
+                minValue = pipebts[i].x;
             }
         }
 
         start.update();
+
         if(!start.startGame) {
 
-            if(pipebts[0].x<pipebts[1].x){
-                if (danky.y<(pipebts[0].y+pipebts[0].height+2)){
-                    danky.yvel=16;
-                }
-            } else if(pipebts[1].x<pipebts[0].x){
-                if (danky.y<(pipebts[1].y+pipebts[1].height+10)){
-                    danky.yvel=16;
+            //Requires make back to original code
+//            for (int i = 0; i <= (Constant.booknumber - 1); i++) {
+//                if (pipebts[i].x < pipebts[i].x) {
+//                    if (danky.y < (pipebts[0].y + pipebts[0].height + 2)) {
+//                        danky.yvel = 16;
+//                    }
+//                }
+//            }
+
+            for (int i = 0; i < pipebts.length; i++) {
+                if(pipebts[i].x==minValue){
+                    if (danky.y<(pipebts[i].y+pipebts[i].height+2)){
+                        danky.yvel=16;
+                    }
                 }
             }
         }
+        if(!Pause.gamePause){
+            if(start.startGame){
+                for(entity e:entity.entities){
+                    if(danky.isCollide(e)){
+
+                        e.handleCollision(danky);
+                        danky.handleCollision(e);
+                        if(!danky.qaziAlive){
+                            gameEnd=true;
+                        }
+
+
+                    }
+                }
+            }
+        }
+
         if (!gameEnd) {
             if (start.startGame) {
+                //Score counter
                 Pause.update();
+
+
             }
             if (!Pause.gamePause) {
+
                 danky.update();
-                for (int i = 0; i <= 1; i++) {
+                for (int i = 0; i <= (Constant.pipenumber - 1); i++) {
                     pipebts[i].update();
                     pipetops[i].update();
                     pipetops[i].y = pipebts[i].y + 700;
                 }
-                for (int i = 0; i <= 1; i++) {
+                if(start.startGame) {
+                    for (int i = 0; i < pipebts.length; i++) {
+                        if ((danky.x) == (pipebts[i].x)) {
+                            score++;
+                            //System.out.println(score);
+                        }
+                    }
+                }
+                System.out.println(score);
+                //Number of books is always half of total here.
+                for (int i = 0; i <= ((Constant.booknumber - 1)); i++) {
                     books[i].update();
                     int j = 0;
+                }
+
+                //Moves books from spaces in between pipes.
                 /*while (books[i].y > (pipebts[j].y+427) && books[i].y+100 < pipetops[j].y && j<=1) {
                     books[i].update();
                     if(j<1){
@@ -205,11 +266,12 @@ public class GameScreen implements Screen {
                     }
                 }
                 */
-                }
+
                 bg1.update();
                 bg2.update();
             }
         }
+
 
         if (danky.y <= 0) {
             gameEnd = true;
@@ -217,8 +279,10 @@ public class GameScreen implements Screen {
         }
 
         if (gameEnd) {
+            score=0;
             if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
                 gameEnd = false;
+                danky.qaziAlive=true;
                 start.startGame=false;
                 start.y=0;
 //                danky.y = 300;
