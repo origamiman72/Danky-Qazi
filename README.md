@@ -45,9 +45,9 @@ Latest Version:
 
 v0.314159265: [Download](https://www.dropbox.com/s/55u2bo074e8v5uk/Danky%20Qazi%20v0.314.jar?dl=0)
 
-<details>v0.2: [Download](https://www.dropbox.com/s/ghh3w24g6v1jo1v/Danky%20Qazi%20v0.2.jar?dl=0)
-
+<details>
 <summary>Older Versions:</summary>
+v0.2: https://www.dropbox.com/s/ghh3w24g6v1jo1v/Danky%20Qazi%20v0.2.jar?dl=0
 </details>
 
 ## How to contribute to code
