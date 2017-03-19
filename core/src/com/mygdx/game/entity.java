@@ -23,13 +23,13 @@ public abstract class entity {
     public int xvel;
     public int yvel;
 
-    public final int typeID;
+    public final type typeID;
 
     //STATIC FIELDS
     public static ArrayList<entity> entities = new ArrayList<entity>();
 
     //CONSTRUCTOR
-    public entity(int width, int height, int x, int y, int xvel, int yvel, int typeID, Texture texture, SpriteBatch batch){
+    public entity(int width, int height, int x, int y, int xvel, int yvel, type typeID, Texture texture, SpriteBatch batch){
         this.width = width;
         this.height = height;
         this.x = x;

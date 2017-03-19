@@ -218,10 +218,11 @@ public class GameScreen implements Screen {
 
                         e.handleCollision(danky);
                         danky.handleCollision(e);
-
                         if(!danky.qaziAlive){
                             gameEnd=true;
                         }
+
+
                     }
                 }
             }
@@ -231,6 +232,8 @@ public class GameScreen implements Screen {
             if (start.startGame) {
                 //Score counter
                 Pause.update();
+
+
             }
             if (!Pause.gamePause) {
 
@@ -279,6 +282,7 @@ public class GameScreen implements Screen {
             score=0;
             if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
                 gameEnd = false;
+                danky.qaziAlive=true;
                 start.startGame=false;
                 start.y=0;
 //                danky.y = 300;

@@ -26,7 +26,7 @@ public class pipebt extends entity {
 //    int v;
 
     public pipebt(/*int width, int height, int x, int y, int v, int typeID, Texture texture, */SpriteBatch batch) {
-        super((int)Math.round(143/1.2), (int)Math.round(512/1.2), 1280, (int)(0-Math.round(Math.random() * 290 + 100)), 5, 0, 0, new Texture("dankpipe.png"), batch);
+        super((int)Math.round(143/1.2), (int)Math.round(512/1.2), 1280, (int)(0-Math.round(Math.random() * 290 + 100)), 5, 0, type.PEPE, new Texture("dankpipe.png"), batch);
         /*width = Math.round(143/1.2);
         height = Math.round(512/1.2);
         x=1280;

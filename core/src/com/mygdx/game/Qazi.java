@@ -29,7 +29,7 @@ public class Qazi extends entity{
 //    int v;
 
     public Qazi(/*int width, int height, int x, int y, int v, int typeID, Texture texture, */SpriteBatch batch){
-        super((int)Math.round(122/1.5), (int)Math.round(249/2.5), 50, 400, 0, 0, -2, new Texture("pixelqazi.png"), batch);
+        super((int)Math.round(122/1.5), (int)Math.round(249/2.5), 50, 400, 0, 0, type.QAZI, new Texture("pixelqazi.png"), batch);
         /*width=Math.round(122/1.5);
         height=Math.round(249/2.5);
         x=50;
@@ -59,9 +59,11 @@ public class Qazi extends entity{
     }
     @Override
     public void handleCollision(entity e){
-
-        if(e.typeID != 1){
-            System.out.println(e.typeID);
+        type q=e.typeID;
+        System.out.println(q);
+        boolean a = q==type.PEPE;
+        if(a){
+            System.out.println(a);
             qaziAlive=false;
         }
     }

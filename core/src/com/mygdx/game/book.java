@@ -25,7 +25,7 @@ public class book extends entity{
 
 
     public book(/*int width, int height, int x, int y, int v, int typeID, Texture texture, */SpriteBatch batch) {
-        super((int)Math.round(1000/10), (int)Math.round(829/10), 1280, (int)Math.round(Math.random() * 400 + 100), 10, 0, 1, new Texture("chembook.png"), batch);
+        super((int)Math.round(1000/10), (int)Math.round(829/10), 1280, (int)Math.round(Math.random() * 400 + 100), 10, 0, type.BOOK, new Texture("chembook.png"), batch);
         /*width = Math.round(1000/10);
         height = Math.round(829/10);
         x=1280;
