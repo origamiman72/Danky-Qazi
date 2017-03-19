@@ -189,6 +189,15 @@ public class GameScreen implements Screen {
                 minValue = pipebts[i].x;
             }
         }
+        if(!start.startGame&&Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){
+            danky.y=400;
+            danky.yvel=16;
+            for(int i=0; i<pipebts.length; i++) {
+                pipebts[i].x = ((pipeSpace * (i)) + 1280);
+                pipetops[i].y = pipebts[i].y + 700;
+                pipetops[i].x = pipebts[i].x;
+            }
+        }
 
         start.update();
 
@@ -289,6 +298,7 @@ public class GameScreen implements Screen {
 //                danky.yvel = 0;
             }
         }
+
 //        if(Gdx.input.isKeyPressed(Input.Keys.W)){
 //            ypos+=5;
 //        }

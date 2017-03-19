@@ -29,7 +29,7 @@ public class Qazi extends entity{
 //    int v;
 
     public Qazi(/*int width, int height, int x, int y, int v, int typeID, Texture texture, */SpriteBatch batch){
-        super((int)Math.round(122/1.5), (int)Math.round(249/2.5), 50, 400, 0, 0, type.QAZI, new Texture("pixelqazi.png"), batch);
+        super((int)Math.round(122/1.5), (int)Math.round(249/2.5), 50, 400, 0, 16, type.QAZI, new Texture("pixelqazi.png"), batch);
         /*width=Math.round(122/1.5);
         height=Math.round(249/2.5);
         x=50;
