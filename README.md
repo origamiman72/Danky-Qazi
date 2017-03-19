@@ -10,6 +10,8 @@ Dankest game in all the land
 * Collision detection added (-@origamiman72)
 * Generalized Constants (-@BRF321JOJO)
 * Generalized Pipe Spacing (-@origamiman72)
+* Score Counter (console based, no gui yet) (-@origamiman72)
+* Bug fixes (-@origamiman72)
 
 ### v0.2
 
