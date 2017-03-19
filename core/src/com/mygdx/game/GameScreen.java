@@ -69,10 +69,12 @@ public class GameScreen implements Screen {
 
         for (int i = 0; i <= (Constant.pipenumber - 1); i++) {
             pipebts[i] = new pipebt(game.batch);
+            entity.entities.add(pipebts[i]);
         }
 
         for (int j = 0; j <= (Constant.booknumber - 1); j++) {
             books[j] = new book(game.batch);
+            entity.entities.add(books[j]);
         }
 
         for (int i = 0; i <= (Constant.booknumber - 1); i++) {
@@ -81,6 +83,7 @@ public class GameScreen implements Screen {
 
         for (int i = 0; i <= (Constant.pipenumber - 1); i++) {
             pipetops[i] = new pipetop(game.batch);
+            entity.entities.add(pipetops[i]);
         }
 
         pipeSpace=((1280+(pipebts[1].width*(Constant.pipenumber+1)))-(pipebts[1].width*Constant.pipenumber))/Constant.pipenumber;
@@ -178,11 +181,7 @@ public class GameScreen implements Screen {
         //if (entity.isCollide==true){
         //   gameEnd=true;
 
-        for (entity e : entity.entities) {
-            if (danky.isCollide(e)){
-                gameEnd=true;
-            }
-        }
+
 
         minValue=pipebts[0].x;
         for (int i = 1; i < pipebts.length; i++) {
@@ -192,6 +191,7 @@ public class GameScreen implements Screen {
         }
 
         start.update();
+
         if(!start.startGame) {
 
             //Requires make back to original code
@@ -211,15 +211,29 @@ public class GameScreen implements Screen {
                 }
             }
         }
+        if(!Pause.gamePause){
+            if(start.startGame){
+                for(entity e:entity.entities){
+                    if(danky.isCollide(e)){
+
+                        e.handleCollision(danky);
+                        danky.handleCollision(e);
+
+                        if(!danky.qaziAlive){
+                            gameEnd=true;
+                        }
+                    }
+                }
+            }
+        }
 
         if (!gameEnd) {
             if (start.startGame) {
                 //Score counter
-
-
                 Pause.update();
             }
             if (!Pause.gamePause) {
+
                 danky.update();
                 for (int i = 0; i <= (Constant.pipenumber - 1); i++) {
                     pipebts[i].update();
@@ -230,7 +244,7 @@ public class GameScreen implements Screen {
                     for (int i = 0; i < pipebts.length; i++) {
                         if ((danky.x) == (pipebts[i].x)) {
                             score++;
-                            System.out.println(score);
+                            //System.out.println(score);
                         }
                     }
                 }
@@ -254,6 +268,7 @@ public class GameScreen implements Screen {
                 bg2.update();
             }
         }
+
 
         if (danky.y <= 0) {
             gameEnd = true;

@@ -53,6 +53,7 @@ public abstract class entity {
             return false;
         }
     }
+    public abstract void handleCollision(entity e);
 
     //ABSTRACT METHODS
     //Varies depending on the subclass*

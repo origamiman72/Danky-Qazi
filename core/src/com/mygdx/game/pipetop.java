@@ -43,6 +43,11 @@ public class pipetop extends entity {
     }
 
     @Override
+    public void handleCollision(entity e){
+
+    }
+
+    @Override
     public void render() {
 
     }

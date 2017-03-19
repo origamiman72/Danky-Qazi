@@ -17,6 +17,7 @@ public class Qazi extends entity{
 //    long height;
 //    long width;
 
+    public boolean qaziAlive=true;
     Sound triboonal = Gdx.audio.newSound(Gdx.files.internal("triboonal.mp3"));
     Sound gameover = Gdx.audio.newSound(Gdx.files.internal("gameover.mp3"));
     boolean gameStart = false;
@@ -28,7 +29,7 @@ public class Qazi extends entity{
 //    int v;
 
     public Qazi(/*int width, int height, int x, int y, int v, int typeID, Texture texture, */SpriteBatch batch){
-        super((int)Math.round(122/1.5), (int)Math.round(249/2.5), 50, 400, 0, 0, 0, new Texture("pixelqazi.png"), batch);
+        super((int)Math.round(122/1.5), (int)Math.round(249/2.5), 50, 400, 0, 0, -2, new Texture("pixelqazi.png"), batch);
         /*width=Math.round(122/1.5);
         height=Math.round(249/2.5);
         x=50;
@@ -55,6 +56,14 @@ public class Qazi extends entity{
         }
 
 
+    }
+    @Override
+    public void handleCollision(entity e){
+
+        if(e.typeID != 1){
+            System.out.println(e.typeID);
+            qaziAlive=false;
+        }
     }
 
     @Override

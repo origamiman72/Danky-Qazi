@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
+//import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 //import com.sun.xml.internal.stream.Entity;
 
 import java.util.Random;
@@ -42,6 +42,11 @@ public class pipebt extends entity {
             x=1280;
             y = (int)(0-Math.round(Math.random() * 290 + 100));
         }
+    }
+
+    @Override
+    public void handleCollision(entity e){
+
     }
 
     @Override
