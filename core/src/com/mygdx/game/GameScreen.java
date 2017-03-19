@@ -81,7 +81,7 @@ public class GameScreen implements Screen {
 
             //pipebts[i].x = pipebts[i].x + 700;
             pipebts[i].x = ((700 * (i)) + 1280);
-            pipetops[i].y = pipebts[i].y + 700;
+            pipetops[i].y = pipebts[i].y + Constnat.distancebetweenpipes;
             pipetops[i].x = pipebts[i].x;
         }
 
@@ -209,7 +209,7 @@ public class GameScreen implements Screen {
                 for (int i = 0; i <= (Constant.pipenumber - 1); i++) {
                     pipebts[i].update();
                     pipetops[i].update();
-                    pipetops[i].y = pipebts[i].y + 700;
+                    pipetops[i].y = pipebts[i].y + Constant.distancebetweenpipes;
                 }
 
                 //Number of books is always half of total here.

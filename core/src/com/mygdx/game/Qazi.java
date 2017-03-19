@@ -27,16 +27,10 @@ public class Qazi extends entity{
 //
 //    int v;
 
-    public Qazi(/*int width, int height, int x, int y, int v, int typeID, Texture texture, */SpriteBatch batch){
+    public Qazi(SpriteBatch batch){
         super((int)Math.round(122/1.5), (int)Math.round(249/2.5), 50, 400, 0, 0, 0, new Texture("pixelqazi.png"), batch);
-        /*width=Math.round(122/1.5);
-        height=Math.round(249/2.5);
-        x=50;
-        y=400;
-        v=0;
-        texture= new Texture("pixelqazi.jpg");
-        */
     }
+
     public void update(){
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
