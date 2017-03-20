@@ -1,5 +1,4 @@
 package com.mygdx.game;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
@@ -27,7 +26,6 @@ public class GameScreen implements Screen {
     private final int LEVEL_HEIGHT;
 
     private int pipeSpace;
-
     private int score;
 
     Qazi danky;
@@ -41,6 +39,7 @@ public class GameScreen implements Screen {
     pipetop[] pipetops = new pipetop[Constant.pipenumber];
     bg bg1;
     bg bg2;
+
     private int minValue;
 
     private Texture img;
@@ -70,32 +69,23 @@ public class GameScreen implements Screen {
         for (int i = 0; i <= (Constant.pipenumber - 1); i++) {
             pipebts[i] = new pipebt(game.batch);
             entity.entities.add(pipebts[i]);
-        }
-
-        for (int j = 0; j <= (Constant.booknumber - 1); j++) {
-            books[j] = new book(game.batch);
-            entity.entities.add(books[j]);
-        }
-
-        for (int i = 0; i <= (Constant.booknumber - 1); i++) {
-            books[i].x = (700 * i) + 1280;
-        }
-
-        for (int i = 0; i <= (Constant.pipenumber - 1); i++) {
             pipetops[i] = new pipetop(game.batch);
             entity.entities.add(pipetops[i]);
         }
-
-        pipeSpace=((1280+(pipebts[1].width*(Constant.pipenumber+1)))-(pipebts[1].width*Constant.pipenumber))/Constant.pipenumber;
+            pipeSpace=((1280+(pipebts[1].width*(Constant.pipenumber+1)))-(pipebts[1].width*Constant.pipenumber))/Constant.pipenumber;
 
         for (int i = 0; i <= (Constant.pipenumber - 1); i++) {
-
             //pipebts[i].x = pipebts[i].x + 700;
             pipebts[i].x = ((pipeSpace * (i)) + 1280);
             pipetops[i].y = pipebts[i].y + 700;
             pipetops[i].x = pipebts[i].x;
         }
 
+        for (int i = 0; i <= (Constant.booknumber - 1); i++) {
+            books[i] = new book(game.batch);
+            entity.entities.add(books[i]);
+            books[i].x = (700 * i) + 1280;
+        }
 
         LEVEL_WIDTH = MyGdxGame.V_WIDTH;
         LEVEL_HEIGHT = MyGdxGame.V_HEIGHT;
@@ -110,11 +100,8 @@ public class GameScreen implements Screen {
         bgm.play();
     }
 
-    //METHODS
     @Override
-    public void show() {
-
-    }
+    public void show() {}
 
     @Override
     public void render(float delta) {
@@ -124,19 +111,19 @@ public class GameScreen implements Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        //Allows transparent images
         game.batch.enableBlending();
-
 
         game.batch.begin();
         game.batch.draw(bg1.texture, bg1.x, bg1.y, bg1.width, bg1.height);
         game.batch.draw(img1, bg2.x, bg2.y, bg2.width, bg2.height);
-        game.batch.draw(danky.texture, danky.x, danky.y, danky.width, danky.height);
+        danky.render();
         for (int i = 0; i <= (Constant.booknumber - 1); i++) {
-            game.batch.draw(books[i].texture, books[i].x, books[i].y, books[i].width, books[i].height);
+            books[i].render();
         }
         for (int i = 0; i <= (Constant.pipenumber - 1); i++) {
-            game.batch.draw(pipebts[i].texture, pipebts[i].x, pipebts[i].y, pipebts[i].width, pipebts[i].height);
-            game.batch.draw(pipetops[i].texture, pipetops[i].x, pipetops[i].y, pipetops[i].width, pipetops[i].height);
+            pipebts[i].render();
+            pipetops[i].render();
         }
 
         if (Pause.gamePause){
@@ -151,25 +138,15 @@ public class GameScreen implements Screen {
     }
 
     @Override
-    public void resize(int width, int height) {
-
-    }
+    public void resize(int width, int height) {}
     @Override
-    public void pause() {
-
-    }
+    public void pause() {}
     @Override
-    public void resume() {
-
-    }
+    public void resume() {}
     @Override
-    public void hide() {
-
-    }
+    public void hide() {}
     @Override
-    public void dispose() {
-
-    }
+    public void dispose() {}
 
     public void update(float delta) {
         if (start.startGame){
@@ -181,15 +158,12 @@ public class GameScreen implements Screen {
         //if (entity.isCollide==true){
         //   gameEnd=true;
 
-
-
         minValue=pipebts[0].x;
         for (int i = 1; i < pipebts.length; i++) {
             if (pipebts[i].x < minValue) {
                 minValue = pipebts[i].x;
             }
         }
-
         start.update();
 
         if(!start.startGame) {
@@ -221,8 +195,6 @@ public class GameScreen implements Screen {
                         if(!danky.qaziAlive){
                             gameEnd=true;
                         }
-
-
                     }
                 }
             }
@@ -232,9 +204,8 @@ public class GameScreen implements Screen {
             if (start.startGame) {
                 //Score counter
                 Pause.update();
-
-
             }
+
             if (!Pause.gamePause) {
 
                 danky.update();
@@ -289,18 +260,5 @@ public class GameScreen implements Screen {
 //                danky.yvel = 0;
             }
         }
-//        if(Gdx.input.isKeyPressed(Input.Keys.W)){
-//            ypos+=5;
-//        }
-//        if(Gdx.input.isKeyPressed(Input.Keys.S)){
-//            ypos-=5;
-//        }
-//        if(Gdx.input.isKeyPressed(Input.Keys.A)){
-//            xpos-=5;
-//        }
-//        if(Gdx.input.isKeyPressed(Input.Keys.D)){
-//            xpos+=5;
-//        }
-//        System.out.println(delta);
     }
 }
