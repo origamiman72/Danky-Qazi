@@ -21,6 +21,7 @@ public class Qazi extends entity{
     Sound triboonal = Gdx.audio.newSound(Gdx.files.internal("triboonal.mp3"));
     Sound gameover = Gdx.audio.newSound(Gdx.files.internal("gameover.mp3"));
     boolean gameStart = false;
+    int score =0;
 
 //    int x;
 //
@@ -65,6 +66,9 @@ public class Qazi extends entity{
         if(a){
             System.out.println(a);
             qaziAlive=false;
+        }
+        if(!a){
+            score+=2;
         }
     }
 
