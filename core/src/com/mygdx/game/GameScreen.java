@@ -133,8 +133,8 @@ public class GameScreen implements Screen {
 
         game.batch.enableBlending();
 
-        game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
-        hud.stage.draw();
+
+        //game.batch.setProjectionMatrix(gameCam.combined);
         game.batch.begin();
         game.batch.draw(bg1.texture, bg1.x, bg1.y, bg1.width, bg1.height);
         game.batch.draw(img1, bg2.x, bg2.y, bg2.width, bg2.height);
@@ -160,13 +160,20 @@ public class GameScreen implements Screen {
 //        batch.end();
         //game.batch.draw(img, xpos, ypos, 101, 126);
 
+
         game.batch.end();
+        game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
+        if(start.startGame){
+            hud.stage.draw();
+        }
 
     }
 
     @Override
     public void resize(int width, int height) {
-
+        // HD GRAFIXXXXXXXXXXXXXXXXXXXXXXXXXX
+        gamePort.update(width,height, true);
+        hud.stage.getViewport().update(width, height, true);
     }
     @Override
     public void pause() {
@@ -197,6 +204,8 @@ public class GameScreen implements Screen {
 
 
         scoretext="Score: "+danky.score;
+        hud.scorenumber=danky.score;
+        hud.updateScore("Score: "+danky.score);
         minValue=pipebts[0].x;
         for (int i = 1; i < pipebts.length; i++) {
             if (pipebts[i].x < minValue) {
@@ -301,7 +310,7 @@ public class GameScreen implements Screen {
             gameEnd = true;
             danky.y = 0;
         }
-        hud.scorenumber=danky.score;
+
 
         if (gameEnd) {
             danky.score=0;
