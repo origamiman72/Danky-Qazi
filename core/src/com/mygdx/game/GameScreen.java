@@ -52,7 +52,7 @@ public class GameScreen implements Screen {
     private Texture pause;
     int xpos;
     int ypos;
-
+    HUD hud;
 
     //CONSTRUCTOR
     public GameScreen(MyGdxGame game) {
@@ -71,6 +71,7 @@ public class GameScreen implements Screen {
         danky= new Qazi(game.batch);
         booko= new book(game.batch);
         Pause = new pause();
+        hud = new HUD(game.batch);
 
 
         for (int i = 0; i <= (Constant.pipenumber - 1); i++) {
@@ -132,7 +133,8 @@ public class GameScreen implements Screen {
 
         game.batch.enableBlending();
 
-
+        game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
+        hud.stage.draw();
         game.batch.begin();
         game.batch.draw(bg1.texture, bg1.x, bg1.y, bg1.width, bg1.height);
         game.batch.draw(img1, bg2.x, bg2.y, bg2.width, bg2.height);
@@ -157,7 +159,9 @@ public class GameScreen implements Screen {
 //        scorecounter.draw(batch, scoretext, 200, 200);
 //        batch.end();
         //game.batch.draw(img, xpos, ypos, 101, 126);
+
         game.batch.end();
+
     }
 
     @Override
@@ -297,6 +301,7 @@ public class GameScreen implements Screen {
             gameEnd = true;
             danky.y = 0;
         }
+        hud.scorenumber=danky.score;
 
         if (gameEnd) {
             danky.score=0;
@@ -308,6 +313,7 @@ public class GameScreen implements Screen {
 //                danky.y = 300;
 //                danky.yvel = 0;
             }
+
         }
 
 //        if(Gdx.input.isKeyPressed(Input.Keys.W)){
