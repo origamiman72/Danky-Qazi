@@ -7,6 +7,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -28,7 +29,10 @@ public class GameScreen implements Screen {
 
     private int pipeSpace;
 
-    private int score;
+
+    private BitmapFont scorecounter;
+    private SpriteBatch batch;
+    private String scoretext;
 
     Qazi danky;
     boolean gameEnd = false;
@@ -48,15 +52,17 @@ public class GameScreen implements Screen {
     private Texture pause;
     int xpos;
     int ypos;
-
+    HUD hud;
 
     //CONSTRUCTOR
     public GameScreen(MyGdxGame game) {
 
+        scoretext= "Score: 0";
+        batch = new SpriteBatch();
+        scorecounter= new BitmapFont();
         this.game = game;
         //Background
         img1 = new Texture("background2.jpg");
-        score = 0;
         bgm = new musicbg();
         start= new startScreen();
         bg1 = new bg();
@@ -65,6 +71,7 @@ public class GameScreen implements Screen {
         danky= new Qazi(game.batch);
         booko= new book(game.batch);
         Pause = new pause();
+        hud = new HUD(game.batch);
 
 
         for (int i = 0; i <= (Constant.pipenumber - 1); i++) {
@@ -127,6 +134,7 @@ public class GameScreen implements Screen {
         game.batch.enableBlending();
 
 
+        //game.batch.setProjectionMatrix(gameCam.combined);
         game.batch.begin();
         game.batch.draw(bg1.texture, bg1.x, bg1.y, bg1.width, bg1.height);
         game.batch.draw(img1, bg2.x, bg2.y, bg2.width, bg2.height);
@@ -142,17 +150,30 @@ public class GameScreen implements Screen {
         if (Pause.gamePause){
             game.batch.draw(pause, 0, 0);
         }
+
         game.batch.draw(start.texture, start.x, start.y);
         if (gameEnd) {
             game.batch.draw(img, xpos, ypos);
         }
+//        batch.begin();
+//        scorecounter.draw(batch, scoretext, 200, 200);
+//        batch.end();
         //game.batch.draw(img, xpos, ypos, 101, 126);
+
+
         game.batch.end();
+        game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
+        if(start.startGame){
+            hud.stage.draw();
+        }
+
     }
 
     @Override
     public void resize(int width, int height) {
-
+        // HD GRAFIXXXXXXXXXXXXXXXXXXXXXXXXXX
+        gamePort.update(width,height, true);
+        hud.stage.getViewport().update(width, height, true);
     }
     @Override
     public void pause() {
@@ -182,11 +203,22 @@ public class GameScreen implements Screen {
         //   gameEnd=true;
 
 
-
+        scoretext="Score: "+danky.score;
+        hud.scorenumber=danky.score;
+        hud.updateScore("Score: "+danky.score);
         minValue=pipebts[0].x;
         for (int i = 1; i < pipebts.length; i++) {
             if (pipebts[i].x < minValue) {
                 minValue = pipebts[i].x;
+            }
+        }
+        if(!start.startGame&&Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){
+            danky.y=400;
+            danky.yvel=16;
+            for(int i=0; i<pipebts.length; i++) {
+                pipebts[i].x = ((pipeSpace * (i)) + 1280);
+                pipetops[i].y = pipebts[i].y + 700;
+                pipetops[i].x = pipebts[i].x;
             }
         }
 
@@ -216,8 +248,9 @@ public class GameScreen implements Screen {
                 for(entity e:entity.entities){
                     if(danky.isCollide(e)){
 
-                        e.handleCollision(danky);
                         danky.handleCollision(e);
+                        e.handleCollision(danky);
+
                         if(!danky.qaziAlive){
                             gameEnd=true;
                         }
@@ -246,12 +279,12 @@ public class GameScreen implements Screen {
                 if(start.startGame) {
                     for (int i = 0; i < pipebts.length; i++) {
                         if ((danky.x) == (pipebts[i].x)) {
-                            score++;
+                            danky.score++;
                             //System.out.println(score);
                         }
                     }
                 }
-                System.out.println(score);
+                System.out.println(danky.score);
                 //Number of books is always half of total here.
                 for (int i = 0; i <= ((Constant.booknumber - 1)); i++) {
                     books[i].update();
@@ -278,9 +311,11 @@ public class GameScreen implements Screen {
             danky.y = 0;
         }
 
+
         if (gameEnd) {
-            score=0;
+
             if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
+                danky.score=0;
                 gameEnd = false;
                 danky.qaziAlive=true;
                 start.startGame=false;
@@ -288,7 +323,9 @@ public class GameScreen implements Screen {
 //                danky.y = 300;
 //                danky.yvel = 0;
             }
+
         }
+
 //        if(Gdx.input.isKeyPressed(Input.Keys.W)){
 //            ypos+=5;
 //        }

@@ -15,9 +15,9 @@ public class pause {
     }
 
     public void update(){
-        if (Gdx.input.isKeyJustPressed(Input.Keys.P) && gamePause !=true) {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.P) && !gamePause) {
             gamePause=true;
-        }else if (Gdx.input.isKeyJustPressed(Input.Keys.P) && gamePause !=false) {
+        }else if (Gdx.input.isKeyJustPressed(Input.Keys.P) && gamePause) {
             gamePause=false;
         }
     }

@@ -14,6 +14,6 @@ public class musicbg {
         bgmusic = Gdx.audio.newSound(Gdx.files.internal("bgmusic.mp3"));
     }
     public void play(){
-        bgmusic.loop(0.2f);
+        bgmusic.loop(0.5f);
     }
 }

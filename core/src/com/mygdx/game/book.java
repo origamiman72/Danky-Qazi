@@ -44,6 +44,8 @@ public class book extends entity{
     }
     @Override
     public void handleCollision(entity e){
+        x+=(1280+50);
+        y=(int)Math.round(Math.random() * 400 + 100);
     }
 
     @Override
