@@ -47,7 +47,7 @@ Dankest game in all the land
 
 Latest Version:
 
-v0.4: [Download](https://www.dropbox.com/s/jz5d55upjcpk0ez/Danky%20Qazi%20v0.4.jar?dl=0)
+v0.4: [Download](https://www.dropbox.com/s/bnkxalwfo6gh9g6/Danky%20Qazi%20v0.4.jar?dl=0)
 
 <details>
 <summary>Older Versions:</summary><p>
