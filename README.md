@@ -6,6 +6,10 @@ Dankest game in all the land
 
 ## Changelog
 
+### v0.4
+* Score Counter GUI added
+* Background Music updated ("Danky Qazi" parody of Smash Mouth - All Stars by Vyrek Vahn)
+
 ### v0.314159265
 * Collision detection added (-@origamiman72)
 * Generalized Constants (-@BRF321JOJO)
@@ -43,10 +47,12 @@ Dankest game in all the land
 
 Latest Version:
 
-v0.314159265: [Download](https://www.dropbox.com/s/55u2bo074e8v5uk/Danky%20Qazi%20v0.314.jar?dl=0)
+v0.4: [Download](https://www.dropbox.com/s/jz5d55upjcpk0ez/Danky%20Qazi%20v0.4.jar?dl=0)
 
 <details>
 <summary>Older Versions:</summary><p>
+
+v0.314159265: [Download](https://www.dropbox.com/s/55u2bo074e8v5uk/Danky%20Qazi%20v0.314.jar?dl=0)
 
 v0.2: [Download](https://www.dropbox.com/s/ghh3w24g6v1jo1v/Danky%20Qazi%20v0.2.jar?dl=0)
 
