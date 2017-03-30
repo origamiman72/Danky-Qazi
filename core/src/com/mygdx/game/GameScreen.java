@@ -313,8 +313,9 @@ public class GameScreen implements Screen {
 
 
         if (gameEnd) {
-            danky.score=0;
+
             if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
+                danky.score=0;
                 gameEnd = false;
                 danky.qaziAlive=true;
                 start.startGame=false;
