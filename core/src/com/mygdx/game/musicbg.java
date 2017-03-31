@@ -9,11 +9,15 @@ import com.badlogic.gdx.audio.Sound;
 public class musicbg {
 
     Sound bgmusic;
+    boolean soundEnabled=true;
 
     public musicbg(){
         bgmusic = Gdx.audio.newSound(Gdx.files.internal("bgmusic.mp3"));
     }
     public void play(){
-        bgmusic.loop(0.5f);
+            bgmusic.loop(0.5f);
+            if(!soundEnabled){
+                bgmusic.stop();
+            }
     }
 }

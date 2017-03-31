@@ -202,6 +202,16 @@ public class GameScreen implements Screen {
         //if (entity.isCollide==true){
         //   gameEnd=true;
 
+        if(Gdx.input.isKeyJustPressed(Input.Keys.M)){
+            if(bgm.soundEnabled) {
+                bgm.bgmusic.pause();
+                bgm.soundEnabled=false;
+            }else if(!bgm.soundEnabled){
+                bgm.bgmusic.resume();
+                bgm.soundEnabled=true;
+            }
+            System.out.println("Muted");
+        }
 
         scoretext="Score: "+danky.score;
         hud.scorenumber=danky.score;
