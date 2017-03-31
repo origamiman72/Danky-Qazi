@@ -10,6 +10,8 @@ Dankest game in all the land
 * Score Counter GUI added
 * Background Music updated ("Danky Qazi" parody of Smash Mouth - All Stars by Vyrek Vahn)
 
+(-@origamiman72)
+
 ### v0.314159265
 * Collision detection added (-@origamiman72)
 * Generalized Constants (-@BRF321JOJO)
