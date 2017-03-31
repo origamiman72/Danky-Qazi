@@ -243,19 +243,21 @@ public class GameScreen implements Screen {
                 }
             }
         }
-        if(!Pause.gamePause){
-            if(start.startGame){
-                for(entity e:entity.entities){
-                    if(danky.isCollide(e)){
+        if(!gameEnd) {
+            if (!Pause.gamePause) {
+                if (start.startGame) {
+                    for (entity e : entity.entities) {
+                        if (danky.isCollide(e)) {
 
-                        danky.handleCollision(e);
-                        e.handleCollision(danky);
+                            danky.handleCollision(e);
+                            e.handleCollision(danky);
 
-                        if(!danky.qaziAlive){
-                            gameEnd=true;
+                            if (!danky.qaziAlive) {
+                                gameEnd = true;
+                            }
+
+
                         }
-
-
                     }
                 }
             }
@@ -313,7 +315,6 @@ public class GameScreen implements Screen {
 
 
         if (gameEnd) {
-
             if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
                 danky.score=0;
                 gameEnd = false;

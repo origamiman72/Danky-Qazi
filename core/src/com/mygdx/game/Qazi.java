@@ -66,6 +66,7 @@ public class Qazi extends entity{
         if(a){
             System.out.println(a);
             qaziAlive=false;
+            gameover.play(1.0f);
         }
         if(!a){
             score+=2;
