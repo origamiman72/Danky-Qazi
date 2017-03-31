@@ -37,11 +37,9 @@ Dankest game in all the land
 ## Things to add
 
 * Doritos (powerups)
-* Change background music
 * Explanations for what everything does in code
 * Settings to mute audio
 * Better textures
-* Hitboxes
 
 ## Download Game
 
