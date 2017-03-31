@@ -16,8 +16,5 @@ public class musicbg {
     }
     public void play(){
             bgmusic.loop(0.5f);
-            if(!soundEnabled){
-                bgmusic.stop();
-            }
     }
 }
