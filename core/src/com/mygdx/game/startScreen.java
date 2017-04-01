@@ -14,9 +14,11 @@ public class startScreen {
     int x;
     int yvel;
     Texture texture;
+    boolean showStart=true;
 
     public startScreen(){
         startGame= false;
+        showStart=true;
         x=0;
         y=0;
         texture= new Texture("start screen.png");
@@ -26,6 +28,7 @@ public class startScreen {
         if (startGame!=true) {
             if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
                 startGame=true;
+                showStart=true;
             }
         }
         if (startGame==true){

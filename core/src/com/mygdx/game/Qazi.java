@@ -45,7 +45,9 @@ public class Qazi extends entity{
             if (gameStart){
                 if(y<=700) {
                     yvel = 16;
-                    triboonal.play(1.0f);
+                    if(!Settings.sfxmuted) {
+                        triboonal.play(1.0f);
+                    }
                 }
             }
         } else {
@@ -53,7 +55,9 @@ public class Qazi extends entity{
         }
             y += yvel;
         if(y<=0){
-            gameover.play(1.0f);
+            if(!Settings.sfxmuted) {
+                gameover.play(1.0f);
+            }
         }
 
 
@@ -66,6 +70,9 @@ public class Qazi extends entity{
         if(a){
             System.out.println(a);
             qaziAlive=false;
+            if(!Settings.sfxmuted) {
+                gameover.play(1.0f);
+            }
         }
         if(!a){
             score+=2;

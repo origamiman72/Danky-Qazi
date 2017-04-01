@@ -12,6 +12,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import java.awt.event.MouseEvent;
+
 /**
  * Created by peter on 2/18/17.
  */
@@ -33,6 +35,8 @@ public class GameScreen implements Screen {
     private BitmapFont scorecounter;
     private SpriteBatch batch;
     private String scoretext;
+
+    Settings setting;
 
     Qazi danky;
     boolean gameEnd = false;
@@ -72,6 +76,7 @@ public class GameScreen implements Screen {
         booko= new book(game.batch);
         Pause = new pause();
         hud = new HUD(game.batch);
+        setting = new Settings();
 
 
         for (int i = 0; i <= (Constant.pipenumber - 1); i++) {
@@ -150,16 +155,38 @@ public class GameScreen implements Screen {
         if (Pause.gamePause){
             game.batch.draw(pause, 0, 0);
         }
-
-        game.batch.draw(start.texture, start.x, start.y);
+        if(start.showStart) {
+            game.batch.draw(start.texture, start.x, start.y);
+        }
         if (gameEnd) {
             game.batch.draw(img, xpos, ypos);
         }
+        //game.batch.draw(setting.);
 //        batch.begin();
 //        scorecounter.draw(batch, scoretext, 200, 200);
 //        batch.end();
         //game.batch.draw(img, xpos, ypos, 101, 126);
+        if(!start.startGame) {
+                game.batch.draw(setting.icon, setting.x, setting.y, setting.width, setting.height);
+        }
 
+        //Settings
+        if(setting.showSettings){
+            start.showStart=false;
+            game.batch.draw(setting.menu, setting.menux, setting.menuy, setting.menuwidth, setting.menuheight);
+            if(!setting.bgmuted){
+                game.batch.draw(setting.bgmute, setting.menux, setting.menuy, setting.menuwidth, setting.menuheight);
+            }else if(setting.bgmuted){
+                game.batch.draw(setting.bgunmute, setting.menux, setting.menuy, setting.menuwidth, setting.menuheight);
+            }
+            if(!setting.sfxmuted){
+                game.batch.draw(setting.sfxmute, setting.menux, setting.menuy, setting.menuwidth, setting.menuheight);
+            }else if(setting.sfxmuted){
+                game.batch.draw(setting.sfxunmute, setting.menux, setting.menuy, setting.menuwidth, setting.menuheight);
+            }
+        }else if(!setting.showSettings){
+            start.showStart=true;
+        }
 
         game.batch.end();
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
@@ -193,14 +220,25 @@ public class GameScreen implements Screen {
     }
 
     public void update(float delta) {
+
         if (start.startGame){
             danky.gameStart=true;
+            if(setting.showSettings){
+                setting.showSettings=false;
+            }
         }else if(!start.startGame){
             danky.gameStart=false;
         }
 
         //if (entity.isCollide==true){
         //   gameEnd=true;
+
+
+        if(setting.bgmuted) {
+            bgm.bgmusic.pause();
+        }else if(!setting.bgmuted){
+            bgm.bgmusic.resume();
+        }
 
 
         scoretext="Score: "+danky.score;
@@ -222,9 +260,17 @@ public class GameScreen implements Screen {
             }
         }
 
+//        if(setting.showSettings) {
+//            if (!setting.bgmuted) {
+//                bgm.soundEnabled = true;
+//            } else if (setting.bgmuted) {
+//                bgm.soundEnabled = false;
+//            }
+//        }
         start.update();
 
         if(!start.startGame) {
+            setting.update();
 
             //Requires make back to original code
 //            for (int i = 0; i <= (Constant.booknumber - 1); i++) {
@@ -243,19 +289,21 @@ public class GameScreen implements Screen {
                 }
             }
         }
-        if(!Pause.gamePause){
-            if(start.startGame){
-                for(entity e:entity.entities){
-                    if(danky.isCollide(e)){
+        if(!gameEnd) {
+            if (!Pause.gamePause) {
+                if (start.startGame) {
+                    for (entity e : entity.entities) {
+                        if (danky.isCollide(e)) {
 
-                        danky.handleCollision(e);
-                        e.handleCollision(danky);
+                            danky.handleCollision(e);
+                            e.handleCollision(danky);
 
-                        if(!danky.qaziAlive){
-                            gameEnd=true;
+                            if (!danky.qaziAlive) {
+                                gameEnd = true;
+                            }
+
+
                         }
-
-
                     }
                 }
             }
@@ -284,7 +332,7 @@ public class GameScreen implements Screen {
                         }
                     }
                 }
-                System.out.println(danky.score);
+                //System.out.println(danky.score);
                 //Number of books is always half of total here.
                 for (int i = 0; i <= ((Constant.booknumber - 1)); i++) {
                     books[i].update();
@@ -311,9 +359,7 @@ public class GameScreen implements Screen {
             danky.y = 0;
         }
 
-
         if (gameEnd) {
-
             if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
                 danky.score=0;
                 gameEnd = false;

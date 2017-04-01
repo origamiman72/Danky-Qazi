@@ -58,7 +58,7 @@ project(":ios") {
     }
 }
 
-project(":html") {
+/*project(":html") {
     apply plugin: "gwt"
     apply plugin: "war"
 
@@ -72,7 +72,7 @@ project(":html") {
         compile "net.dermetfan.libgdx-utils:libgdx-utils:0.13.4:sources"
         compile "net.dermetfan.libgdx-utils:libgdx-utils-box2d:0.13.4:sources"
     }
-}
+}*/
 
 project(":core") {
     apply plugin: "java"
