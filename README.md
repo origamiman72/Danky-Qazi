@@ -6,6 +6,13 @@ Dankest game in all the land
 
 ## Changelog
 
+### v0.5
+* Settings menu added
+* Mute functions added
+* Bug fixes
+
+(-@origamiman72)
+
 ### v0.4
 * Score Counter GUI added
 * Background Music updated ("Danky Qazi" parody of Smash Mouth - All Stars by Vyrek Vahn)
@@ -47,10 +54,12 @@ Dankest game in all the land
 
 Latest Version:
 
-v0.4: [Download](https://www.dropbox.com/s/bnkxalwfo6gh9g6/Danky%20Qazi%20v0.4.jar?dl=0)
+v0.5: [Download](https://www.dropbox.com/s/4zr6bisippatkdi/Danky%20Qazi%20v0.5.jar?dl=0)
 
 <details>
 <summary>Older Versions:</summary><p>
+
+v0.4: [Download](https://www.dropbox.com/s/bnkxalwfo6gh9g6/Danky%20Qazi%20v0.4.jar?dl=0)
 
 v0.314159265: [Download](https://www.dropbox.com/s/55u2bo074e8v5uk/Danky%20Qazi%20v0.314.jar?dl=0)
 
