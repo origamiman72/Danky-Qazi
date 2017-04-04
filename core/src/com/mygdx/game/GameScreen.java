@@ -98,7 +98,15 @@ public class GameScreen implements Screen {
             entity.entities.add(pipetops[i]);
         }
 
+        if(setting.difficulty==1){
+            Constant.pipenumber=2;
+        }else if(setting.difficulty==2){
+            Constant.pipenumber=3;
+        }else if(setting.difficulty==3){
+            Constant.pipenumber=4;
+        }
         pipeSpace=((1280+(pipebts[1].width*(Constant.pipenumber+1)))-(pipebts[1].width*Constant.pipenumber))/Constant.pipenumber;
+
 
         for (int i = 0; i <= (Constant.pipenumber - 1); i++) {
 
@@ -120,6 +128,7 @@ public class GameScreen implements Screen {
 
         pause = new Texture("pause.png");
         bgm.play();
+
     }
 
     //METHODS
@@ -137,7 +146,6 @@ public class GameScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         game.batch.enableBlending();
-
 
         //game.batch.setProjectionMatrix(gameCam.combined);
         game.batch.begin();
@@ -173,17 +181,31 @@ public class GameScreen implements Screen {
         //Settings
         if(setting.showSettings){
             start.showStart=false;
-            game.batch.draw(setting.menu, setting.menux, setting.menuy, setting.menuwidth, setting.menuheight);
-            if(!setting.bgmuted){
-                game.batch.draw(setting.bgmute, setting.menux, setting.menuy, setting.menuwidth, setting.menuheight);
-            }else if(setting.bgmuted){
-                game.batch.draw(setting.bgunmute, setting.menux, setting.menuy, setting.menuwidth, setting.menuheight);
+            if(setting.pagenumber==1) {
+                game.batch.draw(setting.menu, setting.menux, setting.menuy, setting.menuwidth, setting.menuheight);
+                if(!setting.bgmuted){
+                    game.batch.draw(setting.bgmute, setting.menux, setting.menuy, setting.menuwidth, setting.menuheight);
+                }else if(setting.bgmuted){
+                    game.batch.draw(setting.bgunmute, setting.menux, setting.menuy, setting.menuwidth, setting.menuheight);
+                }
+                if(!setting.sfxmuted){
+                    game.batch.draw(setting.sfxmute, setting.menux, setting.menuy, setting.menuwidth, setting.menuheight);
+                }else if(setting.sfxmuted){
+                    game.batch.draw(setting.sfxunmute, setting.menux, setting.menuy, setting.menuwidth, setting.menuheight);
+                }
+            }else if(setting.pagenumber==2){
+                game.batch.draw(setting.menu2, setting.menux, setting.menuy, setting.menuwidth, setting.menuheight);
             }
-            if(!setting.sfxmuted){
-                game.batch.draw(setting.sfxmute, setting.menux, setting.menuy, setting.menuwidth, setting.menuheight);
-            }else if(setting.sfxmuted){
-                game.batch.draw(setting.sfxunmute, setting.menux, setting.menuy, setting.menuwidth, setting.menuheight);
+            if(setting.pagenumber==2) {
+                if(setting.difficulty==1){
+                    game.batch.draw(setting.easy, setting.menux, setting.menuy, setting.menuwidth, setting.menuheight);
+                }else if(setting.difficulty==2){
+                    game.batch.draw(setting.medium, setting.menux, setting.menuy, setting.menuwidth, setting.menuheight);
+                }else if(setting.difficulty==3){
+                    game.batch.draw(setting.hard, setting.menux, setting.menuy, setting.menuwidth, setting.menuheight);
+                }
             }
+
         }else if(!setting.showSettings){
             start.showStart=true;
         }
@@ -193,6 +215,7 @@ public class GameScreen implements Screen {
         if(start.startGame){
             hud.stage.draw();
         }
+        
 
     }
 
@@ -221,6 +244,8 @@ public class GameScreen implements Screen {
 
     public void update(float delta) {
 
+
+
         if (start.startGame){
             danky.gameStart=true;
             if(setting.showSettings){
@@ -234,11 +259,8 @@ public class GameScreen implements Screen {
         //   gameEnd=true;
 
 
-        if(setting.bgmuted) {
-            bgm.bgmusic.pause();
-        }else if(!setting.bgmuted){
-            bgm.bgmusic.resume();
-        }
+        bgm.update();
+
 
 
         scoretext="Score: "+danky.score;
@@ -271,6 +293,19 @@ public class GameScreen implements Screen {
 
         if(!start.startGame) {
             setting.update();
+            pipeSpace=((1280+(pipebts[1].width*(Constant.pipenumber+1)))-(pipebts[1].width*Constant.pipenumber))/Constant.pipenumber;
+            if(Gdx.input.justTouched()) {
+                if (setting.pagenumber == 2) {
+                    if ((Gdx.input.getX() > setting.diffx) && (Gdx.input.getX() < (setting.diffxlim))) {
+                        for (int i = 0; i <= (Constant.pipenumber - 1); i++) {
+                            //pipebts[i].x = pipebts[i].x + 700;
+                            pipebts[i].x = ((pipeSpace * (i))+500);
+                            pipetops[i].y = pipebts[i].y + 700;
+                            pipetops[i].x = pipebts[i].x;
+                        }
+                    }
+                }
+            }
 
             //Requires make back to original code
 //            for (int i = 0; i <= (Constant.booknumber - 1); i++) {
@@ -361,6 +396,7 @@ public class GameScreen implements Screen {
 
         if (gameEnd) {
             if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
+                setting.pagenumber=1;
                 danky.score=0;
                 gameEnd = false;
                 danky.qaziAlive=true;
