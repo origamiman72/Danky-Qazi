@@ -6,7 +6,7 @@ package com.mygdx.game;
 public class Constant {
 
 
-    static int pipenumber = 3;
+    static int pipenumber = 4;
     static int booknumber = 2;
 
     //Distance betwenn = 275

@@ -6,6 +6,11 @@ Dankest game in all the land
 
 ## Changelog
 
+### v0.6
+* Difficulty options added in settings
+
+(-@origamiman72)
+
 ### v0.5
 * Settings menu added
 * Mute functions added
@@ -54,10 +59,12 @@ Dankest game in all the land
 
 Latest Version:
 
-v0.5: [Download](https://www.dropbox.com/s/4zr6bisippatkdi/Danky%20Qazi%20v0.5.jar?dl=0)
+v0.6: [Download](https://www.dropbox.com/s/ksafp5filxhp6qv/Danky%20Qazi%20v0.6.jar?dl=0)
 
 <details>
 <summary>Older Versions:</summary><p>
+
+v0.5: [Download](https://www.dropbox.com/s/4zr6bisippatkdi/Danky%20Qazi%20v0.5.jar?dl=0)
 
 v0.4: [Download](https://www.dropbox.com/s/bnkxalwfo6gh9g6/Danky%20Qazi%20v0.4.jar?dl=0)
 
