@@ -57,7 +57,7 @@ Dankest game in all the land
 
 ## Download Game
 
-NOTE: To run game, you need [Java](https://www.java.com/en/). To play the game, download Java and the game file from dropbox and run it.
+NOTE: To run game, you need [Java](https://www.java.com/en/). To play the game, download/install Java and the game file from dropbox and run it.
 
 Latest Version:
 
