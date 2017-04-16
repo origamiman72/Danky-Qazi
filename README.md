@@ -61,7 +61,7 @@ NOTE: To run game, you need [Java](https://www.java.com/en/). To play the game, 
 
 Latest Version:
 
-v0.6: [Download](https://www.dropbox.com/s/ksafp5filxhp6qv/Danky%20Qazi%20v0.6.jar?dl=0)
+v0.6: [Download](https://dl.orangedox.com/Um6N2bD9oFfFe41ZnR)
 
 <details>
 <summary>Older Versions:</summary><p>
