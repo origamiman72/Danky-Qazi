@@ -59,6 +59,8 @@ Dankest game in all the land
 
 NOTE: To run game, you need [Java](https://www.java.com/en/). To play the game, download/install Java and the game file from dropbox and run it.
 
+Follow @abhiktakespictures on Instagram to be notified of new updates!
+
 Latest Version:
 
 v0.6: [Download](https://dl.orangedox.com/Um6N2bD9oFfFe41ZnR)
