@@ -63,7 +63,7 @@ Follow @abhiktakespictures on Instagram to be notified of new updates!
 
 Latest Version:
 
-v0.6: [Download](https://dl.orangedox.com/Um6N2bD9oFfFe41ZnR)
+v0.6: [Download](https://www.dropbox.com/s/ksafp5filxhp6qv/Danky%20Qazi%20v0.6.jar?dl=0)
 
 <details>
 <summary>Older Versions:</summary><p>
