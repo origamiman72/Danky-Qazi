@@ -30,6 +30,7 @@ public class GameScreen implements Screen {
     private final int LEVEL_HEIGHT;
 
     private int pipeSpace;
+    private int highscore;
 
 
     private BitmapFont scorecounter;
@@ -77,6 +78,7 @@ public class GameScreen implements Screen {
         Pause = new pause();
         hud = new HUD(game.batch);
         setting = new Settings();
+        highscore=0;
 
 
         for (int i = 0; i <= (Constant.pipenumber - 1); i++) {
@@ -261,11 +263,13 @@ public class GameScreen implements Screen {
 
         bgm.update();
 
-
+        if(danky.score>highscore){
+            highscore=danky.score;
+        }
 
         scoretext="Score: "+danky.score;
         hud.scorenumber=danky.score;
-        hud.updateScore("Score: "+danky.score);
+        hud.updateScore("Score: "+danky.score+ "   High Score: "+highscore);
         minValue=pipebts[0].x;
         for (int i = 1; i < pipebts.length; i++) {
             if (pipebts[i].x < minValue) {

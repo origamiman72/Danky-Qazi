@@ -44,7 +44,7 @@ public class HUD {
         //Labels take in: STRING, LabelStyle(Font,Color)
         score = new Label("Score: "+scorenumber, new Label.LabelStyle(pixelFont, Color.WHITE));
 
-        score.setFontScale(2F);
+        score.setFontScale(1.5F);
 
         displayTable.add(score);
 
