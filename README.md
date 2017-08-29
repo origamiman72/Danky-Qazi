@@ -6,6 +6,12 @@ Dankest game in all the land
 
 ## Changelog
 
+### v0.7
+* Added High Score counter
+* Added easter egg
+
+(-@origamiman72)
+
 ### v0.6
 * Difficulty options added in settings
 
@@ -63,10 +69,12 @@ Follow @abhiktakespictures on Instagram to be notified of new updates!
 
 Latest Version:
 
-v0.6: [Download](https://www.dropbox.com/s/ksafp5filxhp6qv/Danky%20Qazi%20v0.6.jar?dl=0)
+v0.7: [Download](https://www.dropbox.com/s/oelz6ietayivrju/Danky%20Qazi%20v0.7.jar?dl=0)
 
 <details>
 <summary>Older Versions:</summary><p>
+
+v0.6: [Download](https://www.dropbox.com/s/ksafp5filxhp6qv/Danky%20Qazi%20v0.6.jar?dl=0)
 
 v0.5: [Download](https://www.dropbox.com/s/4zr6bisippatkdi/Danky%20Qazi%20v0.5.jar?dl=0)
 
