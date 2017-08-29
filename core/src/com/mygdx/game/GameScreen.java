@@ -1,57 +1,44 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by Fernflower decompiler)
+//
+
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-
-import java.awt.event.MouseEvent;
-
-/**
- * Created by peter on 2/18/17.
- */
-
-//test123
+import java.util.Iterator;
 
 public class GameScreen implements Screen {
-
-    //FIELDS
     private MyGdxGame game;
     private OrthographicCamera gameCam;
     private Viewport gamePort;
     private final int LEVEL_WIDTH;
     private final int LEVEL_HEIGHT;
-
     private int pipeSpace;
-    private int highscore;
-
-
     private BitmapFont scorecounter;
     private SpriteBatch batch;
     private String scoretext;
-
+    private int highscore;
     Settings setting;
-
     Qazi danky;
     boolean gameEnd = false;
     startScreen start;
     pause Pause;
     musicbg bgm;
-    book[] books = new book[Constant.booknumber];
+    book[] books;
     book booko;
-    pipebt[] pipebts = new pipebt[Constant.pipenumber];
-    pipetop[] pipetops = new pipetop[Constant.pipenumber];
+    pipebt[] pipebts;
+    pipetop[] pipetops;
     bg bg1;
     bg bg2;
     private int minValue;
-
     private Texture img;
     private Texture img1;
     private Texture pause;
@@ -59,371 +46,301 @@ public class GameScreen implements Screen {
     int ypos;
     HUD hud;
 
-    //CONSTRUCTOR
     public GameScreen(MyGdxGame game) {
-
-        scoretext= "Score: 0";
-        batch = new SpriteBatch();
-        scorecounter= new BitmapFont();
+        this.books = new book[Constant.booknumber];
+        this.pipebts = new pipebt[Constant.pipenumber];
+        this.pipetops = new pipetop[Constant.pipenumber];
+        this.scoretext = "Score: 0";
+        this.batch = new SpriteBatch();
+        this.scorecounter = new BitmapFont();
         this.game = game;
-        //Background
-        img1 = new Texture("background2.jpg");
-        bgm = new musicbg();
-        start= new startScreen();
-        bg1 = new bg();
-        bg2 = new bg();
-        bg2.x= 1280;
-        danky= new Qazi(game.batch);
-        booko= new book(game.batch);
-        Pause = new pause();
-        hud = new HUD(game.batch);
-        setting = new Settings();
+        this.img1 = new Texture("background2.jpg");
+        this.bgm = new musicbg();
+        this.start = new startScreen();
+        this.bg1 = new bg();
+        this.bg2 = new bg();
+        this.bg2.x = 1280L;
+        this.danky = new Qazi(game.batch);
+        this.booko = new book(game.batch);
+        this.Pause = new pause();
+        this.hud = new HUD(game.batch);
+        this.setting = new Settings();
         highscore=0;
 
-
-        for (int i = 0; i <= (Constant.pipenumber - 1); i++) {
-            pipebts[i] = new pipebt(game.batch);
-            entity.entities.add(pipebts[i]);
+        int i;
+        for(i = 0; i <= Constant.pipenumber - 1; ++i) {
+            this.pipebts[i] = new pipebt(game.batch);
+            entity.entities.add(this.pipebts[i]);
         }
 
-        for (int j = 0; j <= (Constant.booknumber - 1); j++) {
-            books[j] = new book(game.batch);
-            entity.entities.add(books[j]);
+        for(i = 0; i <= Constant.booknumber - 1; ++i) {
+            this.books[i] = new book(game.batch);
+            entity.entities.add(this.books[i]);
         }
 
-        for (int i = 0; i <= (Constant.booknumber - 1); i++) {
-            books[i].x = (700 * i) + 1280;
+        for(i = 0; i <= Constant.booknumber - 1; ++i) {
+            this.books[i].x = 700 * i + 1280;
         }
 
-        for (int i = 0; i <= (Constant.pipenumber - 1); i++) {
-            pipetops[i] = new pipetop(game.batch);
-            entity.entities.add(pipetops[i]);
+        for(i = 0; i <= Constant.pipenumber - 1; ++i) {
+            this.pipetops[i] = new pipetop(game.batch);
+            entity.entities.add(this.pipetops[i]);
         }
 
-        if(setting.difficulty==1){
-            Constant.pipenumber=2;
-        }else if(setting.difficulty==2){
-            Constant.pipenumber=3;
-        }else if(setting.difficulty==3){
-            Constant.pipenumber=4;
-        }
-        pipeSpace=((1280+(pipebts[1].width*(Constant.pipenumber+1)))-(pipebts[1].width*Constant.pipenumber))/Constant.pipenumber;
-
-
-        for (int i = 0; i <= (Constant.pipenumber - 1); i++) {
-
-            //pipebts[i].x = pipebts[i].x + 700;
-            pipebts[i].x = ((pipeSpace * (i)) + 1280);
-            pipetops[i].y = pipebts[i].y + 700;
-            pipetops[i].x = pipebts[i].x;
+        if (this.setting.difficulty == 1) {
+            Constant.pipenumber = 2;
+        } else if (this.setting.difficulty == 2) {
+            Constant.pipenumber = 3;
+        } else if (this.setting.difficulty == 3) {
+            Constant.pipenumber = 4;
         }
 
+        this.pipeSpace = (1280 + this.pipebts[1].width * (Constant.pipenumber + 1) - this.pipebts[1].width * Constant.pipenumber) / Constant.pipenumber;
 
-        LEVEL_WIDTH = MyGdxGame.V_WIDTH;
-        LEVEL_HEIGHT = MyGdxGame.V_HEIGHT;
-        gameCam = new OrthographicCamera();
-        gamePort = new ExtendViewport(LEVEL_WIDTH, LEVEL_HEIGHT, gameCam);
+        for(i = 0; i <= Constant.pipenumber - 1; ++i) {
+            this.pipebts[i].x = this.pipeSpace * i + 1280;
+            this.pipetops[i].y = this.pipebts[i].y + 700;
+            this.pipetops[i].x = this.pipebts[i].x;
+        }
 
-        img = new Texture("gameover.png");
-        xpos = 390;
-        ypos = 310;
-
-        pause = new Texture("pause.png");
-        bgm.play();
-
+        this.LEVEL_WIDTH = 1500;
+        this.LEVEL_HEIGHT = 1500;
+        this.gameCam = new OrthographicCamera();
+        this.gamePort = new ExtendViewport((float)this.LEVEL_WIDTH, (float)this.LEVEL_HEIGHT, this.gameCam);
+        this.img = new Texture("gameover.png");
+        this.xpos = 390;
+        this.ypos = 310;
+        this.pause = new Texture("pause.png");
+        this.bgm.play();
     }
 
-    //METHODS
-    @Override
     public void show() {
-
     }
 
-    @Override
     public void render(float delta) {
-        update(delta);
+        this.update(delta);
+        Gdx.gl.glClearColor(0.0F, 0.0F, 0.0F, 1.0F);
+        Gdx.gl.glClear(16384);
+        this.game.batch.enableBlending();
+        this.game.batch.begin();
+        this.game.batch.draw(this.bg1.texture, (float)this.bg1.x, (float)this.bg1.y, (float)this.bg1.width, (float)this.bg1.height);
+        this.game.batch.draw(this.img1, (float)this.bg2.x, (float)this.bg2.y, (float)this.bg2.width, (float)this.bg2.height);
+        this.game.batch.draw(this.danky.texture, (float)this.danky.x, (float)this.danky.y, (float)this.danky.width, (float)this.danky.height);
 
-        //Clears Screen
-        Gdx.gl.glClearColor(0, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-        game.batch.enableBlending();
-
-        //game.batch.setProjectionMatrix(gameCam.combined);
-        game.batch.begin();
-        game.batch.draw(bg1.texture, bg1.x, bg1.y, bg1.width, bg1.height);
-        game.batch.draw(img1, bg2.x, bg2.y, bg2.width, bg2.height);
-        game.batch.draw(danky.texture, danky.x, danky.y, danky.width, danky.height);
-        for (int i = 0; i <= (Constant.booknumber - 1); i++) {
-            game.batch.draw(books[i].texture, books[i].x, books[i].y, books[i].width, books[i].height);
-        }
-        for (int i = 0; i <= (Constant.pipenumber - 1); i++) {
-            game.batch.draw(pipebts[i].texture, pipebts[i].x, pipebts[i].y, pipebts[i].width, pipebts[i].height);
-            game.batch.draw(pipetops[i].texture, pipetops[i].x, pipetops[i].y, pipetops[i].width, pipetops[i].height);
+        int i;
+        for(i = 0; i <= Constant.booknumber - 1; ++i) {
+            this.game.batch.draw(this.books[i].texture, (float)this.books[i].x, (float)this.books[i].y, (float)this.books[i].width, (float)this.books[i].height);
         }
 
-        if (Pause.gamePause){
-            game.batch.draw(pause, 0, 0);
-        }
-        if(start.showStart) {
-            game.batch.draw(start.texture, start.x, start.y);
-        }
-        if (gameEnd) {
-            game.batch.draw(img, xpos, ypos);
-        }
-        //game.batch.draw(setting.);
-//        batch.begin();
-//        scorecounter.draw(batch, scoretext, 200, 200);
-//        batch.end();
-        //game.batch.draw(img, xpos, ypos, 101, 126);
-        if(!start.startGame) {
-                game.batch.draw(setting.icon, setting.x, setting.y, setting.width, setting.height);
+        for(i = 0; i <= Constant.pipenumber - 1; ++i) {
+            this.game.batch.draw(this.pipebts[i].texture, (float)this.pipebts[i].x, (float)this.pipebts[i].y, (float)this.pipebts[i].width, (float)this.pipebts[i].height);
+            this.game.batch.draw(this.pipetops[i].texture, (float)this.pipetops[i].x, (float)this.pipetops[i].y, (float)this.pipetops[i].width, (float)this.pipetops[i].height);
         }
 
-        //Settings
-        if(setting.showSettings){
-            start.showStart=false;
-            if(setting.pagenumber==1) {
-                game.batch.draw(setting.menu, setting.menux, setting.menuy, setting.menuwidth, setting.menuheight);
-                if(!setting.bgmuted){
-                    game.batch.draw(setting.bgmute, setting.menux, setting.menuy, setting.menuwidth, setting.menuheight);
-                }else if(setting.bgmuted){
-                    game.batch.draw(setting.bgunmute, setting.menux, setting.menuy, setting.menuwidth, setting.menuheight);
+        if (this.Pause.gamePause) {
+            this.game.batch.draw(this.pause, 0.0F, 0.0F);
+        }
+
+        if (this.start.showStart) {
+            this.game.batch.draw(this.start.texture, (float)this.start.x, (float)this.start.y);
+        }
+
+        if (this.gameEnd) {
+            this.game.batch.draw(this.img, (float)this.xpos, (float)this.ypos);
+        }
+
+        if (!this.start.startGame) {
+            this.game.batch.draw(this.setting.icon, (float)this.setting.x, (float)this.setting.y, (float)this.setting.width, (float)this.setting.height);
+        }
+
+        if (this.setting.showSettings) {
+            this.start.showStart = false;
+            if (this.setting.pagenumber == 1) {
+                this.game.batch.draw(this.setting.menu, (float)this.setting.menux, (float)this.setting.menuy, (float)this.setting.menuwidth, (float)this.setting.menuheight);
+                Settings var10000 = this.setting;
+                if (!Settings.bgmuted) {
+                    this.game.batch.draw(this.setting.bgmute, (float)this.setting.menux, (float)this.setting.menuy, (float)this.setting.menuwidth, (float)this.setting.menuheight);
+                } else {
+                    var10000 = this.setting;
+                    if (Settings.bgmuted) {
+                        this.game.batch.draw(this.setting.bgunmute, (float)this.setting.menux, (float)this.setting.menuy, (float)this.setting.menuwidth, (float)this.setting.menuheight);
+                    }
                 }
-                if(!setting.sfxmuted){
-                    game.batch.draw(setting.sfxmute, setting.menux, setting.menuy, setting.menuwidth, setting.menuheight);
-                }else if(setting.sfxmuted){
-                    game.batch.draw(setting.sfxunmute, setting.menux, setting.menuy, setting.menuwidth, setting.menuheight);
+
+                var10000 = this.setting;
+                if (!Settings.sfxmuted) {
+                    this.game.batch.draw(this.setting.sfxmute, (float)this.setting.menux, (float)this.setting.menuy, (float)this.setting.menuwidth, (float)this.setting.menuheight);
+                } else {
+                    var10000 = this.setting;
+                    if (Settings.sfxmuted) {
+                        this.game.batch.draw(this.setting.sfxunmute, (float)this.setting.menux, (float)this.setting.menuy, (float)this.setting.menuwidth, (float)this.setting.menuheight);
+                    }
                 }
-            }else if(setting.pagenumber==2){
-                game.batch.draw(setting.menu2, setting.menux, setting.menuy, setting.menuwidth, setting.menuheight);
+            } else if (this.setting.pagenumber == 2) {
+                if (!this.setting.eeggenabled) {
+                    this.game.batch.draw(this.setting.menu2, (float)this.setting.menux, (float)this.setting.menuy, (float)this.setting.menuwidth, (float)this.setting.menuheight);
+                } else {
+                    this.game.batch.draw(this.setting.menu2e, (float)this.setting.menux, (float)this.setting.menuy, (float)this.setting.menuwidth, (float)this.setting.menuheight);
+                }
+            } else if (this.setting.pagenumber == 3) {
+                this.game.batch.draw(this.setting.eegg, (float)this.setting.menux, (float)this.setting.menuy, (float)this.setting.menuwidth, (float)this.setting.menuheight);
             }
-            if(setting.pagenumber==2) {
-                if(setting.difficulty==1){
-                    game.batch.draw(setting.easy, setting.menux, setting.menuy, setting.menuwidth, setting.menuheight);
-                }else if(setting.difficulty==2){
-                    game.batch.draw(setting.medium, setting.menux, setting.menuy, setting.menuwidth, setting.menuheight);
-                }else if(setting.difficulty==3){
-                    game.batch.draw(setting.hard, setting.menux, setting.menuy, setting.menuwidth, setting.menuheight);
+
+            if (this.setting.pagenumber == 2) {
+                if (this.setting.difficulty == 1) {
+                    this.game.batch.draw(this.setting.easy, (float)this.setting.menux, (float)this.setting.menuy, (float)this.setting.menuwidth, (float)this.setting.menuheight);
+                } else if (this.setting.difficulty == 2) {
+                    this.game.batch.draw(this.setting.medium, (float)this.setting.menux, (float)this.setting.menuy, (float)this.setting.menuwidth, (float)this.setting.menuheight);
+                } else if (this.setting.difficulty == 3) {
+                    this.game.batch.draw(this.setting.hard, (float)this.setting.menux, (float)this.setting.menuy, (float)this.setting.menuwidth, (float)this.setting.menuheight);
                 }
             }
-
-        }else if(!setting.showSettings){
-            start.showStart=true;
+        } else if (!this.setting.showSettings) {
+            this.start.showStart = true;
         }
 
-        game.batch.end();
-        game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
-        if(start.startGame){
-            hud.stage.draw();
+        this.game.batch.end();
+        this.game.batch.setProjectionMatrix(this.hud.stage.getCamera().combined);
+        if (this.start.startGame) {
+            this.hud.stage.draw();
         }
-        
 
     }
 
-    @Override
     public void resize(int width, int height) {
-        // HD GRAFIXXXXXXXXXXXXXXXXXXXXXXXXXX
-        gamePort.update(width,height, true);
-        hud.stage.getViewport().update(width, height, true);
+        this.gamePort.update(width, height, true);
+        this.hud.stage.getViewport().update(width, height, true);
     }
-    @Override
+
     public void pause() {
-
     }
-    @Override
+
     public void resume() {
-
     }
-    @Override
+
     public void hide() {
-
     }
-    @Override
-    public void dispose() {
 
+    public void dispose() {
     }
 
     public void update(float delta) {
-
-
-
-        if (start.startGame){
-            danky.gameStart=true;
-            if(setting.showSettings){
-                setting.showSettings=false;
+        if (this.start.startGame) {
+            this.danky.gameStart = true;
+            if (this.setting.showSettings) {
+                this.setting.showSettings = false;
             }
-        }else if(!start.startGame){
-            danky.gameStart=false;
+        } else if (!this.start.startGame) {
+            this.danky.gameStart = false;
         }
-
-        //if (entity.isCollide==true){
-        //   gameEnd=true;
-
-
-        bgm.update();
 
         if(danky.score>highscore){
             highscore=danky.score;
         }
 
-        scoretext="Score: "+danky.score;
-        hud.scorenumber=danky.score;
-        hud.updateScore("Score: "+danky.score+ "   High Score: "+highscore);
-        minValue=pipebts[0].x;
-        for (int i = 1; i < pipebts.length; i++) {
-            if (pipebts[i].x < minValue) {
-                minValue = pipebts[i].x;
-            }
-        }
-        if(!start.startGame&&Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){
-            danky.y=400;
-            danky.yvel=16;
-            for(int i=0; i<pipebts.length; i++) {
-                pipebts[i].x = ((pipeSpace * (i)) + 1280);
-                pipetops[i].y = pipebts[i].y + 700;
-                pipetops[i].x = pipebts[i].x;
+        this.bgm.update();
+        this.scoretext = "Score: " + this.danky.score;
+        this.hud.scorenumber = this.danky.score;
+        this.hud.updateScore("Score: " + this.danky.score+"   High Score: "+highscore);
+        this.minValue = this.pipebts[0].x;
+
+        int i;
+        for(i = 1; i < this.pipebts.length; ++i) {
+            if (this.pipebts[i].x < this.minValue) {
+                this.minValue = this.pipebts[i].x;
             }
         }
 
-//        if(setting.showSettings) {
-//            if (!setting.bgmuted) {
-//                bgm.soundEnabled = true;
-//            } else if (setting.bgmuted) {
-//                bgm.soundEnabled = false;
-//            }
-//        }
-        start.update();
+        if (!this.start.startGame && Gdx.input.isKeyJustPressed(66)) {
+            this.danky.y = 400;
+            this.danky.yvel = 16;
 
-        if(!start.startGame) {
-            setting.update();
-            pipeSpace=((1280+(pipebts[1].width*(Constant.pipenumber+1)))-(pipebts[1].width*Constant.pipenumber))/Constant.pipenumber;
-            if(Gdx.input.justTouched()) {
-                if (setting.pagenumber == 2) {
-                    if ((Gdx.input.getX() > setting.diffx) && (Gdx.input.getX() < (setting.diffxlim))) {
-                        for (int i = 0; i <= (Constant.pipenumber - 1); i++) {
-                            //pipebts[i].x = pipebts[i].x + 700;
-                            pipebts[i].x = ((pipeSpace * (i))+500);
-                            pipetops[i].y = pipebts[i].y + 700;
-                            pipetops[i].x = pipebts[i].x;
+            for(i = 0; i < this.pipebts.length; ++i) {
+                this.pipebts[i].x = this.pipeSpace * i + 1280;
+                this.pipetops[i].y = this.pipebts[i].y + 700;
+                this.pipetops[i].x = this.pipebts[i].x;
+            }
+        }
+
+        this.start.update();
+        if (!this.start.startGame) {
+            this.setting.update();
+            this.pipeSpace = (1280 + this.pipebts[1].width * (Constant.pipenumber + 1) - this.pipebts[1].width * Constant.pipenumber) / Constant.pipenumber;
+            if (Gdx.input.justTouched() && this.setting.pagenumber == 2 && Gdx.input.getX() > this.setting.diffx && Gdx.input.getX() < this.setting.diffxlim) {
+                for(i = 0; i <= Constant.pipenumber - 1; ++i) {
+                    this.pipebts[i].x = this.pipeSpace * i + 500;
+                    this.pipetops[i].y = this.pipebts[i].y + 700;
+                    this.pipetops[i].x = this.pipebts[i].x;
+                }
+            }
+
+            for(i = 0; i < this.pipebts.length; ++i) {
+                if (this.pipebts[i].x == this.minValue && this.danky.y < this.pipebts[i].y + this.pipebts[i].height + 2) {
+                    this.danky.yvel = 16;
+                }
+            }
+        }
+
+        if (!this.gameEnd && !this.Pause.gamePause && this.start.startGame) {
+            Iterator var5 = entity.entities.iterator();
+
+            while(var5.hasNext()) {
+                entity e = (entity)var5.next();
+                if (this.danky.isCollide(e)) {
+                    this.danky.handleCollision(e);
+                    e.handleCollision(this.danky);
+                    if (!this.danky.qaziAlive) {
+                        this.gameEnd = true;
+                    }
+                }
+            }
+        }
+
+        if (!this.gameEnd) {
+            if (this.start.startGame) {
+                this.Pause.update();
+            }
+
+            if (!this.Pause.gamePause) {
+                this.danky.update();
+
+                for(i = 0; i <= Constant.pipenumber - 1; ++i) {
+                    this.pipebts[i].update();
+                    this.pipetops[i].update();
+                    this.pipetops[i].y = this.pipebts[i].y + 700;
+                }
+
+                if (this.start.startGame) {
+                    for(i = 0; i < this.pipebts.length; ++i) {
+                        if (this.danky.x == this.pipebts[i].x) {
+                            ++this.danky.score;
                         }
                     }
                 }
-            }
 
-            //Requires make back to original code
-//            for (int i = 0; i <= (Constant.booknumber - 1); i++) {
-//                if (pipebts[i].x < pipebts[i].x) {
-//                    if (danky.y < (pipebts[0].y + pipebts[0].height + 2)) {
-//                        danky.yvel = 16;
-//                    }
-//                }
-//            }
-
-            for (int i = 0; i < pipebts.length; i++) {
-                if(pipebts[i].x==minValue){
-                    if (danky.y<(pipebts[i].y+pipebts[i].height+2)){
-                        danky.yvel=16;
-                    }
+                for(i = 0; i <= Constant.booknumber - 1; ++i) {
+                    this.books[i].update();
+                    boolean var4 = false;
                 }
-            }
-        }
-        if(!gameEnd) {
-            if (!Pause.gamePause) {
-                if (start.startGame) {
-                    for (entity e : entity.entities) {
-                        if (danky.isCollide(e)) {
 
-                            danky.handleCollision(e);
-                            e.handleCollision(danky);
-
-                            if (!danky.qaziAlive) {
-                                gameEnd = true;
-                            }
-
-
-                        }
-                    }
-                }
+                this.bg1.update();
+                this.bg2.update();
             }
         }
 
-        if (!gameEnd) {
-            if (start.startGame) {
-                //Score counter
-                Pause.update();
-
-
-            }
-            if (!Pause.gamePause) {
-
-                danky.update();
-                for (int i = 0; i <= (Constant.pipenumber - 1); i++) {
-                    pipebts[i].update();
-                    pipetops[i].update();
-                    pipetops[i].y = pipebts[i].y + 700;
-                }
-                if(start.startGame) {
-                    for (int i = 0; i < pipebts.length; i++) {
-                        if ((danky.x) == (pipebts[i].x)) {
-                            danky.score++;
-                            //System.out.println(score);
-                        }
-                    }
-                }
-                //System.out.println(danky.score);
-                //Number of books is always half of total here.
-                for (int i = 0; i <= ((Constant.booknumber - 1)); i++) {
-                    books[i].update();
-                    int j = 0;
-                }
-
-                //Moves books from spaces in between pipes.
-                /*while (books[i].y > (pipebts[j].y+427) && books[i].y+100 < pipetops[j].y && j<=1) {
-                    books[i].update();
-                    if(j<1){
-                        j++;
-                    }
-                }
-                */
-
-                bg1.update();
-                bg2.update();
-            }
+        if (this.danky.y <= 0) {
+            this.gameEnd = true;
+            this.danky.y = 0;
         }
 
-
-        if (danky.y <= 0) {
-            gameEnd = true;
-            danky.y = 0;
+        if (this.gameEnd && Gdx.input.isKeyJustPressed(66)) {
+            this.setting.pagenumber = 1;
+            this.danky.score = 0;
+            this.gameEnd = false;
+            this.danky.qaziAlive = true;
+            this.start.startGame = false;
+            this.start.y = 0;
         }
 
-        if (gameEnd) {
-            if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
-                setting.pagenumber=1;
-                danky.score=0;
-                gameEnd = false;
-                danky.qaziAlive=true;
-                start.startGame=false;
-                start.y=0;
-//                danky.y = 300;
-//                danky.yvel = 0;
-            }
-
-        }
-
-//        if(Gdx.input.isKeyPressed(Input.Keys.W)){
-//            ypos+=5;
-//        }
-//        if(Gdx.input.isKeyPressed(Input.Keys.S)){
-//            ypos-=5;
-//        }
-//        if(Gdx.input.isKeyPressed(Input.Keys.A)){
-//            xpos-=5;
-//        }
-//        if(Gdx.input.isKeyPressed(Input.Keys.D)){
-//            xpos+=5;
-//        }
-//        System.out.println(delta);
     }
 }
