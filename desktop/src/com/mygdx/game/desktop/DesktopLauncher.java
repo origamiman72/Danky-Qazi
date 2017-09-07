@@ -21,7 +21,7 @@ public class DesktopLauncher {
 		cfg.width = 1280;
 		cfg.foregroundFPS=60;
 		cfg.vSyncEnabled=true;
-		//cfg.fullscreen=true;
+		cfg.fullscreen=true;
 		cfg.title="Danky Qazi";
         cfg.addIcon("dankyicon.jpg", Files.FileType.Internal);
 		new LwjglApplication(new MyGdxGame(), cfg);

@@ -252,8 +252,8 @@ public class GameScreen implements Screen {
         }
 
         if (!this.start.startGame && Gdx.input.isKeyJustPressed(66)) {
-            this.danky.y = 400;
-            this.danky.yvel = 16;
+            this.danky.y = 320;
+            this.danky.yvel = -16;
 
             for(i = 0; i < this.pipebts.length; ++i) {
                 this.pipebts[i].x = this.pipeSpace * i + 1280;
@@ -274,9 +274,10 @@ public class GameScreen implements Screen {
                 }
             }
 
-            for(i = 0; i < this.pipebts.length; ++i) {
-                if (this.pipebts[i].x == this.minValue && this.danky.y < this.pipebts[i].y + this.pipebts[i].height + 2) {
-                    this.danky.yvel = 16;
+            for(i = 0; i < this.pipebts.length; i++) {
+                if (this.pipebts[i].x == this.minValue && (this.danky.y +this.danky.height)> this.pipetops[i].y - 2) {
+                    System.out.println(this.pipetops[i].height);
+                    this.danky.yvel = -16;
                 }
             }
         }
@@ -328,9 +329,9 @@ public class GameScreen implements Screen {
             }
         }
 
-        if (this.danky.y <= 0) {
+        if (this.danky.y>=(720-this.danky.height)) {
             this.gameEnd = true;
-            this.danky.y = 0;
+            this.danky.y = (720-this.danky.height);
         }
 
         if (this.gameEnd && Gdx.input.isKeyJustPressed(66)) {
